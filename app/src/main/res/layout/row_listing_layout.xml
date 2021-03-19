@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgPremium"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/list" />
+
+
+        <TextView
+            android:id="@+id/txtListName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgPremium"
+            android:layout_marginTop="5dp"
+            android:text="Smirnoff"
+            android:gravity="center"
+            android:textColor="@color/md_green_600" />
+
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtListName"
+            android:layout_marginTop="5dp"
+            android:text="N1,800"
+            android:gravity="center"
+            android:textColor="@color/md_indigo_900" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

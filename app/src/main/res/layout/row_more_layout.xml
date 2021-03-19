@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardNew1"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="20dp"
+       >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:id="@+id/rl"
+               android:layout_height="wrap_content"
+               android:background="@color/md_amber_A800">
+
+            <ImageView
+                android:id="@+id/imgPopular"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/more"
+                 />
+            <ImageView
+                android:id="@+id/imgFav"
+                android:layout_alignParentRight="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/fv"
+                />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/imgPopular"
+                android:background="#dbdbdb" />
+           </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/rl"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgPremium"
+                    android:layout_marginTop="5dp"
+                    android:text="Smirnoff"
+                   android:layout_marginLeft="10dp"
+                    android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/txtName"
+                android:text="N1,800"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPrice"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:text="98 Sold |"
+                android:id="@+id/txtCount"
+                android:textColor="@color/greyNew"
+                android:textSize="12sp" />
+
+
+                <ImageView
+                    android:id="@+id/imgstart"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@+id/txtPrice"
+                    android:layout_toRightOf="@+id/txtCount"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/star" />
+
+
+            <ImageView
+                android:id="@+id/imgRight1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="12dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/add" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPrice"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/imgstart"
+                    android:layout_marginTop="3dp"
+                    android:text="4.5"
+                    android:id="@+id/txtCRate"
+                    android:textColor="@color/greyNew"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

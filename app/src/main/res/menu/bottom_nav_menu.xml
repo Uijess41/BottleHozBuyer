@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="Home"
+        android:iconTint="@color/grey"
+        android:icon="@drawable/home_menu"/>
+
+    <item
+        android:id="@+id/menu_feed"
+        android:title="Feed"
+        android:iconTint="@color/grey"
+        android:icon="@drawable/feed_menu"/>
+    <item
+        android:id="@+id/menu_messages"
+        android:title="Messages"
+        android:iconTint="@color/grey"
+        android:icon="@drawable/messages_menu"/>
+    <item
+        android:id="@+id/menu_favorite"
+        android:title="Favorite"
+        android:iconTint="@color/grey"
+        android:icon="@drawable/favorite_menu"/>
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profile"
+        android:iconTint="@color/grey"
+        android:icon="@drawable/profile_menu"/>
+</menu>

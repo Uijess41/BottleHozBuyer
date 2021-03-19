@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardNew1"
+        android:layout_width="170dp"
+        android:layout_height="190dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/spark_button1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                app:sparkbutton_activeImage="@drawable/infav"
+                app:sparkbutton_iconSize="25dp"
+                app:sparkbutton_inActiveImage="@drawable/fav" />
+
+
+            <ImageView
+                android:id="@+id/imgPopular"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/imageb" />
+
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/imgPopular"
+                android:background="#dbdbdb" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="N1,800"
+                android:textColor="@color/md_indigo_900" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPrice"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="1200 Sold"
+                android:id="@+id/txtCount"
+                android:textColor="@color/greyNew"
+                android:textSize="12sp" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="35dp"
+                app:cardElevation="15dp"
+                android:elevation="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+               android:layout_alignParentRight="true"
+                android:layout_below="@+id/view1"
+                app:cardCornerRadius="25dp"
+                android:layout_height="35dp">
+
+            <ImageView
+                android:id="@+id/imgRight1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_below="@+id/imgPopular"
+                android:src="@drawable/angle" />
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

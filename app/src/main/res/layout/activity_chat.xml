@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChatActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="#EEEEEE"
+        android:layout_above="@+id/rl"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relHeader"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+               >
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="8dp"
+                    android:layout_centerVertical="true"
+                    android:background="?actionBarItemBackground"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/backleft"
+                    app:tint="@color/black" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="35dp"
+                    android:id="@+id/ivUser"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/ivBack"
+                    android:layout_width="35dp"
+                    android:src="@drawable/fd"
+                  />
+                <TextView
+                    android:id="@+id/txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/ivUser"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:text="User Name"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChat"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:id="@+id/rl"
+         android:background="#EEEEEE"
+         android:layout_alignParentBottom="true"
+         android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+             android:id="@+id/card"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="25dp"
+           >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/imgEmoji"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?actionBarItemBackground"
+                    android:padding="8dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/emoji" />
+
+
+            <EditText
+                android:id="@+id/edt_typeMsg"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@+id/imgEmoji"
+                android:layout_height="fill_parent"
+                android:hint="Type a message"
+                android:background="@null"
+                android:paddingLeft="8dp"
+                android:inputType="textMultiLine|textShortMessage"
+                android:paddingRight="5dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imgAttach"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@+id/imgSend"
+                android:layout_centerVertical="true"
+                android:background="?actionBarItemBackground"
+                android:padding="8dp"
+                android:src="@drawable/attach" />
+                <ImageView
+                    android:id="@+id/imgSend"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="?actionBarItemBackground"
+                    android:padding="8dp"
+                    android:src="@drawable/ssend"
+                    app:tint="@color/grey" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+     </RelativeLayout>
+
+</RelativeLayout>

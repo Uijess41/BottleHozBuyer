@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DealOftheDayActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/not_ac"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@+id/ivBack"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/sfprodisplay_semibold"
+            android:text="@string/deal_of_the_day"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/share" />
+
+    </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:src="@drawable/deal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivcancel"
+                android:layout_width="40dp"
+                android:elevation="15dp"
+                android:layout_height="40dp"
+                android:src="@drawable/cancel" />
+
+            <ImageView
+                android:id="@+id/ivfav"
+                android:layout_toRightOf="@+id/ivcancel"
+                android:layout_width="40dp"
+                android:elevation="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ffv" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>
