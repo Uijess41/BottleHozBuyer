@@ -111,7 +111,8 @@
                         android:hint="Mobile No."
                         android:inputType="phone"
                         android:textSize="13sp"
-                        android:maxLength="13"
+                        android:singleLine="true"
+                        android:maxLength="10"
                         android:id="@+id/etMobile" />
 
                 </com.google.android.material.textfield.TextInputLayout>

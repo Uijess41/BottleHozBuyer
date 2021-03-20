@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import com.maestros.bottlehoz.databinding.ActivityBasicInfoBinding;
 import com.maestros.bottlehoz.model.SignupModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +47,7 @@ public class BasicInfoActivity extends AppCompatActivity {
             pwd=getIntent().getStringExtra("pwd");
             mobile=getIntent().getStringExtra("mobile");
             userType=getIntent().getStringExtra("userType");
+            Log.e("BasicInfoActivity", "userType: " +userType);
             age=getIntent().getStringExtra("age");
         }
 
@@ -77,12 +80,12 @@ public class BasicInfoActivity extends AppCompatActivity {
                 .addBodyParameter("email", email)
                 .addBodyParameter("mobile", mobile)
                 .addBodyParameter("age_validation", age)
-                .addBodyParameter("user_type", userType)
+                .addBodyParameter("type", userType)
                 .addBodyParameter("name", strName)
                 .addBodyParameter("password",pwd)
                 .addBodyParameter("address", "sdjkf")
-                .addBodyParameter("longi", "23.345345")
-                .addBodyParameter("lat", "45.353")
+                .addBodyParameter("longitude", "23.345345")
+                .addBodyParameter("latitude", "45.353")
                 .setTag("SIGNUP")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -99,7 +102,9 @@ public class BasicInfoActivity extends AppCompatActivity {
                            Log.e("model>>",model.getData().getEmail());*/
 
                             if (response.getBoolean("result")==true){
+                                SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, "");
                                 startActivity(new Intent(context, BottomNavActivity.class));
+
                             }else {
 
                             }

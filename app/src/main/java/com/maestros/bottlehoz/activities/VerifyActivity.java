@@ -13,9 +13,11 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.ActivityVerifyBinding;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
 import com.maestros.bottlehoz.utils.Connectivity;
+import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,6 +77,8 @@ public class VerifyActivity extends AppCompatActivity {
     }
 
     private void sendData() {
+      CustomDialog dialog=new CustomDialog();
+        dialog.showDialog(R.layout.progress_layout,this);
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control",OTPVERIFY )
                 .addBodyParameter("email", email)
@@ -85,7 +89,7 @@ public class VerifyActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        dialog.hideDialog();
                         Log.e("response",response+"");
 
                         try {
@@ -100,18 +104,20 @@ public class VerifyActivity extends AppCompatActivity {
                                 finish();
 
                             }else {
-
+                                Toast.makeText(context, ""+response.getString("message"), Toast.LENGTH_SHORT).show();
+                                dialog.hideDialog();
                             }
 
-                            Toast.makeText(context, ""+response.getString("message"), Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             Log.e("VerifyActivity", "e: " +e.getMessage());
+                            dialog.hideDialog();
                         }
                     }
                     @Override
                     public void onError(ANError error) {
                         Log.e("VerifyActivity", "error: " +error.getMessage());
+                        dialog.hideDialog();
                     }
                 });
     }

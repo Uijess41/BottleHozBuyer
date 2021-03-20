@@ -95,7 +95,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/fullname"
                     android:textSize="13sp"
-                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:maxLength="50"
+                    android:inputType="textPersonName"
                     android:id="@+id/etName" />
 
             </com.google.android.material.textfield.TextInputLayout>

@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         context=this
         val connectivity = Connectivity(context)
         binding.btnLogin.setOnClickListener {
@@ -91,13 +92,12 @@ class LoginActivity : AppCompatActivity() {
                            if (gson.fromJson(response.getJSONObject("result").toString().equals(""),))
                             Log.e("model>>",model.getData().getEmail());*/
                         if (response.getBoolean("result") == true) {
-                            startActivity(Intent(applicationContext, HomeActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                            startActivity(Intent(applicationContext, BottomNavActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
 
                         } else {
                         }
                         Toast.makeText(
-                            context,
-                            "" + response.getString("message"),
+                            context, "" + response.getString("message"),
                             Toast.LENGTH_SHORT
                         ).show()
                     } catch (e: JSONException) {

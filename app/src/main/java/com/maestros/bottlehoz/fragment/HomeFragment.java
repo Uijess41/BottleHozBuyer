@@ -10,10 +10,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.activities.HomeActivity;
 import com.maestros.bottlehoz.activities.RecommendedActivity;
@@ -36,13 +41,22 @@ import com.maestros.bottlehoz.model.MoreModel;
 import com.maestros.bottlehoz.model.PopularModel;
 import com.maestros.bottlehoz.model.PremiumModel;
 import com.maestros.bottlehoz.model.SliderModel;
+import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.maestros.bottlehoz.retrofit.BaseUrl.OTPVERIFY;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BANNER;
 
 public class HomeFragment extends Fragment {
 
@@ -95,8 +109,7 @@ public class HomeFragment extends Fragment {
         binding.sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
         binding.sliderView.startAutoCycle();
 
-        sliderAdapter = new SliderAdapterExample(listOfSlider, getActivity());
-        binding.sliderView.setSliderAdapter(sliderAdapter);
+
 
 
         view=binding.getRoot();
@@ -159,10 +172,65 @@ public class HomeFragment extends Fragment {
         getPopularData();
         getListingData();
         getPremiumData();
-
+        showBanner();
         return view;
     }
 
+
+
+    private void showBanner(){
+
+        CustomDialog dialog=new CustomDialog();
+        dialog.showDialog(R.layout.progress_layout,getActivity());
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control",SHOW_BANNER )
+                .setTag("SHOWBANNER")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("response", response+"");
+                        listOfSlider=new ArrayList<>();
+                        dialog.hideDialog();
+                        try {
+                            if (response.getString("result").equals("true")){
+                                String data=response.getString("data");
+                                JSONArray jsonArray=new JSONArray(data);
+
+                                for (int i = 0; i <jsonArray.length() ; i++) {
+                                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                                    SliderModel model=new SliderModel();
+
+                                    model.setImageBanner(jsonObject.getString("image"));
+                                    model.setPath(jsonObject.getString("path"));
+                                  //  model.setTitle(jsonObject.getString("title"));
+                                  //  model.setDiscription(jsonObject.getString("description"));
+                                    listOfSlider.add(model);
+
+                                }
+
+                                sliderAdapter = new SliderAdapterExample(listOfSlider, getActivity());
+                                binding.sliderView.setSliderAdapter(sliderAdapter);
+                                
+                            }
+
+
+                        } catch (JSONException e) {
+                           dialog.hideDialog();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        dialog.hideDialog();
+                    }
+                });
+
+
+    }
 
     private void getDiscountData() {
         DiscountPercentModel percentObj=new DiscountPercentModel("-15 %",R.drawable.image);

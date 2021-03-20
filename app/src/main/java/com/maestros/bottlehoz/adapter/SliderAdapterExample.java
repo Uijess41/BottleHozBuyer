@@ -35,9 +35,20 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-    // final SliderModel dataAdapterOBJ = dataAdapters.get(position);
+      final SliderModel dataAdapterOBJ = dataAdapters.get(position);
 
-     if (position==0){
+      try {
+            Glide.with(viewHolder.itemView)
+                      .load(dataAdapterOBJ.getPath()+dataAdapterOBJ.getImageBanner())
+                      .into(viewHolder.imageSlider);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+     /* viewHolder.txtName.setText(dataAdapterOBJ.getTitle());
+      viewHolder.txtDetails.setText(dataAdapterOBJ.getDiscription());*/
+    /* if (position==0){
          Glide.with(context)
                  .load(R.drawable.banner)
                  .into(viewHolder.imageSlider);
@@ -51,20 +62,13 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
          Glide.with(context)
                  .load(R.drawable.banner)
                  .into(viewHolder.imageSlider);
-     }
+     }*/
       /*  if(position==0){
             Picasso.get().load(R.drawable.gym).into(viewHolder.imageViewBackground);
         }
 */
 
-      /*  try {
-            Glide.with(viewHolder.itemView)
-                      .load(dataAdapterOBJ.getPath()+dataAdapterOBJ.getImageBanner())
-                      .into(viewHolder.imageViewBackground);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-*/
+
 
     }
 
@@ -77,19 +81,20 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
     @Override
     public int getCount() {
         //slider view count could be dynamic size
-        return 3;
+        return dataAdapters.size();
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
 
         View itemView;
         ImageView imageSlider;
-        TextView textViewDescription;
+        TextView txtDetails,txtName;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             imageSlider = itemView.findViewById(R.id.imageSlider);
-           // textViewDescription = itemView.findViewById(R.id.txt_details);
+            txtDetails = itemView.findViewById(R.id.txtDetails);
+            txtName = itemView.findViewById(R.id.txtName);
             this.itemView = itemView;
         }
     }

@@ -44,9 +44,9 @@ class SignUpActivity : AppCompatActivity() {
                 strPwd=binding.etPwd.text.toString()
                 strMobile=binding.etMobile.text.toString()
                 if (binding.cbAge.isChecked){
-                    strAge="yes"
+                    strAge="1"
                 }else{
-                    strAge="no"
+                    strAge="0"
                 }
 
                 if(TextUtils.isEmpty(strEmail)){
@@ -55,7 +55,12 @@ class SignUpActivity : AppCompatActivity() {
                 }else if (TextUtils.isEmpty(strMobile)){
                     binding.etMobile.setError("Please enter mobile")
                     binding.etMobile.requestFocus()
-                }else if (TextUtils.isEmpty(strPwd)){
+
+                }
+                else if (strMobile.length < 10) {
+                    binding.etMobile.setError("Please enter atleast 10 digit mobile number")
+                }
+                else if (TextUtils.isEmpty(strPwd)){
                     binding.etPwd.setError("Please enter password")
                     binding.etPwd.requestFocus()
                 }else {
