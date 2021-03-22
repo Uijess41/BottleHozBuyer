@@ -19,8 +19,8 @@
             android:id="@+id/imgDiscount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/image"
+            android:scaleType="centerInside"
+
             />
 
 
@@ -34,7 +34,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="-15%"
+                android:text=""
                 android:gravity="center"
                 android:textStyle="bold"
                 android:id="@+id/txtPercent"

@@ -14,39 +14,40 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.google.gson.Gson;
 import com.maestros.bottlehoz.R;
-import com.maestros.bottlehoz.activities.HomeActivity;
+import com.maestros.bottlehoz.activities.DataDiscount;
+import com.maestros.bottlehoz.activities.DataImagePremium;
+import com.maestros.bottlehoz.activities.DataPopularProduct;
 import com.maestros.bottlehoz.activities.RecommendedActivity;
+import com.maestros.bottlehoz.adapter.CategoryHome;
 import com.maestros.bottlehoz.adapter.CategorytAdapter;
+import com.maestros.bottlehoz.adapter.DataMoreLove;
 import com.maestros.bottlehoz.adapter.DiscountAdapter;
-import com.maestros.bottlehoz.adapter.FeedAdapter;
 import com.maestros.bottlehoz.adapter.ListingAdapter;
 import com.maestros.bottlehoz.adapter.MoreAdapter;
 import com.maestros.bottlehoz.adapter.PopularAdapter;
 import com.maestros.bottlehoz.adapter.PremiumAdapter;
 import com.maestros.bottlehoz.adapter.SliderAdapterExample;
-import com.maestros.bottlehoz.databinding.ActivityRecommendedBinding;
-import com.maestros.bottlehoz.databinding.FragmentFeedBinding;
 import com.maestros.bottlehoz.databinding.FragmentHomeBinding;
-import com.maestros.bottlehoz.model.CategoryModel;
 import com.maestros.bottlehoz.model.DiscountPercentModel;
-import com.maestros.bottlehoz.model.Feed;
 import com.maestros.bottlehoz.model.ListingModel;
 import com.maestros.bottlehoz.model.MoreModel;
 import com.maestros.bottlehoz.model.PopularModel;
 import com.maestros.bottlehoz.model.PremiumModel;
 import com.maestros.bottlehoz.model.SliderModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.Connectivity;
 import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +56,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.maestros.bottlehoz.retrofit.BaseUrl.OTPVERIFY;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BANNER;
 
 public class HomeFragment extends Fragment {
@@ -66,33 +66,16 @@ public class HomeFragment extends Fragment {
     SliderAdapterExample sliderAdapter;
     List<SliderModel> listOfSlider = new ArrayList<>();
 
-    private DiscountAdapter adapter;
-    private List<DiscountPercentModel> percentList=new ArrayList<>();
-
-    private CategorytAdapter adapterCat;
-    private List<CategoryModel> categoryList=new ArrayList<>();
-
-
-    private PopularAdapter adapterPopular;
-    private List<PopularModel> popularList=new ArrayList<>();
 
 
     private ListingAdapter adapterListing;
     private List<ListingModel> listing=new ArrayList<>();
 
 
-    private PremiumAdapter adapterPremium;
-    private List<PremiumModel> premiumList=new ArrayList<>();
-
-    private MoreAdapter adapterMore;
-    private List<MoreModel> moreList=new ArrayList<>();
-
     private Context context;
     public HomeFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,11 +99,11 @@ public class HomeFragment extends Fragment {
         context=getActivity();
 
 
-        adapter = new DiscountAdapter(context, percentList);
+
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false);
         binding.rvDiscount.setLayoutManager(mLayoutManager);
-        binding.rvDiscount.setAdapter(adapter);
+
 
 
       binding.txtView.setOnClickListener(new View.OnClickListener() {
@@ -130,19 +113,18 @@ public class HomeFragment extends Fragment {
           }
       });
 
-        adapterCat = new CategorytAdapter(context, categoryList);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false);
         binding.rvCategory.setLayoutManager(layoutManager);
-        binding.rvCategory.setAdapter(adapterCat);
 
 
 
-        adapterPopular = new PopularAdapter(context, popularList);
+
+
 
         RecyclerView.LayoutManager layoutManagerPop = new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false);
         binding.rvPopular.setLayoutManager(layoutManagerPop);
-        binding.rvPopular.setAdapter(adapterPopular);
+
 
 
 
@@ -153,30 +135,38 @@ public class HomeFragment extends Fragment {
         binding.rvListing.setAdapter(adapterListing);
 
 
-        adapterPremium = new PremiumAdapter(context, premiumList);
+
 
         RecyclerView.LayoutManager layoutManagerPremium = new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false);
         binding.rvPremium.setLayoutManager(layoutManagerPremium);
-        binding.rvPremium.setAdapter(adapterPremium);
 
 
-        adapterMore = new MoreAdapter(context, moreList);
+
+
 
         binding.rvMore.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        binding.rvMore.setAdapter(adapterMore);
 
 
-        getMoreData();
-        getDiscountData();
-        getCategoryData();
-        getPopularData();
-        getListingData();
-        getPremiumData();
-        showBanner();
+
+
+        Connectivity connectivity = new Connectivity(getActivity());
+        if (connectivity.isOnline()){
+            getMoreData();
+            getDiscountData();
+            getCategoryData();
+            getPopularData();
+            getListingData();
+            getPremiumData();
+            showBanner();
+        }
+        else {
+            Toast.makeText(getActivity(),"Please check internet connection",Toast.LENGTH_SHORT).show();
+        }
+
         return view;
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void showBanner(){
 
@@ -231,38 +221,142 @@ public class HomeFragment extends Fragment {
 
 
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void getDiscountData() {
-        DiscountPercentModel percentObj=new DiscountPercentModel("-15 %",R.drawable.image);
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control","show_coupon")
+                .setTag("Show Discount")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("HomeFragment", response.toString());
+                        try {
+                            if (response.getBoolean("result") == true){
 
-        for (int i = 0; i <3 ; i++) {
-            percentList.add(percentObj);
-        }
+                                Gson gson = new Gson();
+                                DataDiscount dataDiscount = gson.fromJson(response.toString(), DataDiscount.class);
+
+                                ArrayList arrayList = new ArrayList<DataDiscount.Data>();
+                                if (!dataDiscount.getData().isEmpty()){
+                                    arrayList.addAll(dataDiscount.getData());
+                                }else {
+                                    Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+                                DiscountAdapter  adapter = new DiscountAdapter(context, arrayList);
+                                binding.rvDiscount.setAdapter(adapter);
+                            }
+                        } catch (JSONException e) {
+                            Log.e("HomeFragment", "e: " +e.getMessage());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
 
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getCategoryData() {
-        CategoryModel catObj=new CategoryModel("Whiskey",R.drawable.imageb);
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control","show_category")
+                .setTag("Show Category")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("HomeFragment", response.toString());
+                        try {
+                            if (response.getBoolean("result") == true){
 
-        for (int i = 0; i <5 ; i++) {
-            categoryList.add(catObj);
-        }
+                                     Gson gson = new Gson();
+                                    CategoryHome dataCategory = gson.fromJson(response.toString(), CategoryHome.class);
+
+                                ArrayList arrayList = new ArrayList<CategoryHome.Data>();
+                                if (!dataCategory.getData().isEmpty()){
+                                    arrayList.addAll(dataCategory.getData());
+                                }else {
+                                    Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+                                CategorytAdapter   adapterCat = new CategorytAdapter(context, arrayList);
+                                binding.rvCategory.setAdapter(adapterCat);
+                            }
+                        } catch (JSONException e) {
+                            Log.e("HomeFragment", "e: " +e.getMessage());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
 
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getPopularData() {
-        PopularModel popularObj=new PopularModel("N1,800","1200 Sold",R.drawable.imageb);
 
-        for (int i = 0; i <3 ; i++) {
-            popularList.add(popularObj);
-        }
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control","Show_proudctpapular")
+                .setTag("Show Popular Product")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("HomeFragment", response.toString());
+                        try {
+                            if (response.getBoolean("result") == true){
 
+                                Gson gson = new Gson();
+                                DataPopularProduct dataPopular = gson.fromJson(response.toString(), DataPopularProduct.class);
+
+                                ArrayList arrayList = new ArrayList<DataPopularProduct.Data>();
+
+                                if (!dataPopular.getData().isEmpty()){
+                                    arrayList.addAll(dataPopular.getData());
+
+                                }else {
+                                    Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                PopularAdapter   adapterPopular = new PopularAdapter(context, arrayList);
+                                binding.rvPremium.setAdapter(adapterPopular);
+                            }
+                        } catch (JSONException e) {
+                            Log.e("HomeFragment", "e: " +e.getMessage());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getListingData() {
         ListingModel listObj=new ListingModel("Smirnoff","N1,800",R.drawable.list);
 
@@ -272,26 +366,102 @@ public class HomeFragment extends Fragment {
 
 
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getPremiumData() {
-        PremiumModel premiumObj=new PremiumModel(R.drawable.premium);
 
-        for (int i = 0; i <3 ; i++) {
-            premiumList.add(premiumObj);
-        }
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control","show_brand")
+                .setTag("Show Premium Image")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("HomeFragment", response.toString());
+                        try {
+                            if (response.getBoolean("result") == true){
 
+                                Gson gson = new Gson();
+                                DataImagePremium data = gson.fromJson(response.toString(), DataImagePremium.class);
+
+                                ArrayList arrayList = new ArrayList<DataImagePremium.Data>();
+
+                                if (!data.getData().isEmpty()){
+                                    arrayList.addAll(data.getData());
+                                }
+                                else {
+                                    Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                }
+
+
+                                PremiumAdapter   adapterPremium = new PremiumAdapter(context, arrayList);
+                                binding.rvPremium.setAdapter(adapterPremium);
+                            }
+                        } catch (JSONException e) {
+                            Log.e("HomeFragment", "e: " +e.getMessage());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
     }
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getMoreData() {
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control","Show_proudctbuyer")
+                .setTag("Show More Love Product")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("HomeFragment", response.toString());
+                        try {
+                            if (response.getBoolean("result") == true){
+
+                                Gson gson = new Gson();
+                                DataMoreLove dataMore = gson.fromJson(response.toString(), DataMoreLove.class);
+
+                                ArrayList arrayList = new ArrayList<DataMoreLove.Data>();
 
 
-      MoreModel moreObj=new MoreModel("N1,800","98 Sold |","4.2","Berio Wishkey",R.drawable.more);
+                                    if (!dataMore.getData().isEmpty()){
+                                        for (int i = 0; i <4 ; i++) {
+                                          arrayList.add(dataMore.getData().get(i));
 
-        for (int i = 0; i <4 ; i++) {
-            moreList.add(moreObj);
-        }
+                                        }
+                                      //  arrayList.addAll(dataMore.getData());
 
+                                    }else {
+                                        Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
+
+                                MoreAdapter  adapterMore = new MoreAdapter(context, arrayList);
+                                binding.rvMore.setAdapter(adapterMore);
+                            }
+                        } catch (JSONException e) {
+                            Log.e("HomeFragment", "e: " +e.getMessage());
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
     }
 }

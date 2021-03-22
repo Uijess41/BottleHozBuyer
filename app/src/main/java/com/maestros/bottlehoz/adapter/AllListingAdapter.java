@@ -7,13 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.RowAllListingLayoutBinding;
-import com.maestros.bottlehoz.databinding.RowCatproductLayoutBinding;
 import com.maestros.bottlehoz.model.AllListingModel;
-import com.maestros.bottlehoz.model.CategoryModel;
 
 import java.util.List;
 

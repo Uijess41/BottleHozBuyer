@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.DataPopularProduct;
 import com.maestros.bottlehoz.activities.ProductDetailActivity;
-import com.maestros.bottlehoz.databinding.RowCatproductLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowPopularLayoutBinding;
-import com.maestros.bottlehoz.model.CategoryModel;
 import com.maestros.bottlehoz.model.PopularModel;
 
 import java.util.List;
@@ -24,9 +23,9 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
 
 
     private Context mContext;
-    private List<PopularModel> popularList;
+    private List<DataPopularProduct .Data> popularList;
 
-    public PopularAdapter(Context mContext, List<PopularModel> popularList) {
+    public PopularAdapter(Context mContext, List<DataPopularProduct .Data> popularList) {
         this.mContext = mContext;
         this.popularList = popularList;
     }
@@ -39,18 +38,19 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        PopularModel modelObject = popularList.get(position);
+        DataPopularProduct .Data modelObject = popularList.get(position);
       holder.rowPopularLayoutBinding.txtPrice.setText(modelObject.getPrice());
-      holder.rowPopularLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
+      holder.rowPopularLayoutBinding.txtName.setText(modelObject.getName());
+     // holder.rowPopularLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
 
-   try {
-       Glide.with(mContext).load(R.drawable.imageb)
-               .placeholder(R.drawable.imageb).override(250, 250)
+  /* try {
+       Glide.with(mContext).load(modelObject.getImages()+get)
+               .placeholder(R.drawable.dummy).override(250, 250)
                .diskCacheStrategy(DiskCacheStrategy.ALL)
                .into(holder.rowPopularLayoutBinding.imgPopular);
    }catch (Exception e){
 
-   }
+   }*/
      holder.rowPopularLayoutBinding.cardNew1.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {

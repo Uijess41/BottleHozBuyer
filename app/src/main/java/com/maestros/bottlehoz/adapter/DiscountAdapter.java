@@ -2,6 +2,7 @@ package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.DataDiscount;
 import com.maestros.bottlehoz.activities.DealOftheDayActivity;
 import com.maestros.bottlehoz.databinding.RowDiscountLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowLayoutFeedBinding;
@@ -24,9 +26,9 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.MyView
 
 
     private Context mContext;
-    private List<DiscountPercentModel> discountList;
+    private List<DataDiscount.Data> discountList;
 
-    public DiscountAdapter(Context mContext, List<DiscountPercentModel> discountList) {
+    public DiscountAdapter(Context mContext, List<DataDiscount.Data> discountList) {
         this.mContext = mContext;
         this.discountList = discountList;
     }
@@ -39,12 +41,14 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        DiscountPercentModel modelObject = discountList.get(position);
-      holder.rowDiscountLayoutBinding.txtPercent.setText(modelObject.getPercent());
+        DataDiscount.Data modelObject = discountList.get(position);
+      holder.rowDiscountLayoutBinding.txtPercent.setText(modelObject.getCoupon_value()+"%");
 
+
+        Log.e("DiscountAdapter", "onBindViewHolder: " +modelObject.getPath()+modelObject.getImage());
    try {
-       Glide.with(mContext).load(R.drawable.image)
-               .placeholder(R.drawable.image).override(250, 250)
+       Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
+               .error(R.drawable.dummy).override(250, 250)
                .diskCacheStrategy(DiskCacheStrategy.ALL)
                .into(holder.rowDiscountLayoutBinding.imgDiscount);
    }catch (Exception e){

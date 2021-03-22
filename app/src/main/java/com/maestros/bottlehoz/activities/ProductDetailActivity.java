@@ -8,13 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.maestros.bottlehoz.R;
-import com.maestros.bottlehoz.adapter.DiscountAdapter;
-import com.maestros.bottlehoz.adapter.MoreAdapter;
 import com.maestros.bottlehoz.adapter.ProductDetailSimilarAdapter;
-import com.maestros.bottlehoz.databinding.ActivityFavoriteBinding;
 import com.maestros.bottlehoz.databinding.ActivityProductDetailBinding;
-import com.maestros.bottlehoz.model.CategoryModel;
-import com.maestros.bottlehoz.model.DiscountPercentModel;
 import com.maestros.bottlehoz.model.ProductSimilarModel;
 
 import java.util.ArrayList;

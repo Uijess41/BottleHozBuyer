@@ -1,6 +1,10 @@
 package com.maestros.bottlehoz.model;
 
-public class CategoryModel {
+public class ShowCatWiseProductModel {
+
+    String productName;
+    String price;
+    int image;
 
     public String getProductName() {
         return productName;
@@ -8,6 +12,14 @@ public class CategoryModel {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public int getImage() {
@@ -18,13 +30,9 @@ public class CategoryModel {
         this.image = image;
     }
 
-    public CategoryModel(String productName, int image) {
+    public ShowCatWiseProductModel(String productName, String price, int image) {
         this.productName = productName;
+        this.price = price;
         this.image = image;
     }
-
-    String productName;
-    int image;
-
-
 }

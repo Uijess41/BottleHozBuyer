@@ -1,6 +1,7 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -21,9 +22,9 @@ public class MoreAdapter extends RecyclerView.Adapter<MoreAdapter.MyViewHolder>{
 
 
     private Context mContext;
-    private List<MoreModel> moreList;
+    private List<DataMoreLove.Data> moreList;
 
-    public MoreAdapter(Context mContext, List<MoreModel> moreList) {
+    public MoreAdapter(Context mContext, List<DataMoreLove.Data> moreList) {
         this.mContext = mContext;
         this.moreList = moreList;
     }
@@ -36,20 +37,31 @@ public class MoreAdapter extends RecyclerView.Adapter<MoreAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        MoreModel modelObject = moreList.get(position);
-      holder.rowMoreLayoutBinding.txtPrice.setText(modelObject.getPrice());
-      holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
-      holder.rowMoreLayoutBinding.txtName.setText(modelObject.getName());
-      holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
+        DataMoreLove.Data modelObject = moreList.get(position);
 
-   try {
-       Glide.with(mContext).load(R.drawable.imageb)
-               /*.placeholder(R.drawable.imageb).override(150, 150)
-               .diskCacheStrategy(DiskCacheStrategy.ALL)*/
-               .into(holder.rowMoreLayoutBinding.imgPopular);
-   }catch (Exception e){
+        holder.rowMoreLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
+        holder.rowMoreLayoutBinding.txtName.setText(modelObject.getName());
+  //    holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
 
-   }
+   //   holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
+
+
+        if (modelObject.getImages().size()==0){
+
+        }else {
+
+            Log.e("MoreAdapter", "onBindViewHolder: " +modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage());
+            try {
+                Glide.with(mContext).load(modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage())
+                        .error(R.drawable.dummy).override(150, 150)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.rowMoreLayoutBinding.imgPopular);
+            }catch (Exception e){
+
+            }
+        }
+
+
 
 
     }

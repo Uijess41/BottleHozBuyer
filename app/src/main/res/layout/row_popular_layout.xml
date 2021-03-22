@@ -6,7 +6,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardNew1"
         android:layout_width="170dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
@@ -44,15 +44,23 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/imgPopular"
                 android:background="#dbdbdb" />
-
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="N1,800"
+                android:text="-"
+                android:textColor="@color/greyNew" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtName"
+                android:layout_marginLeft="10dp"
+                android:text="-"
                 android:textColor="@color/md_indigo_900" />
 
             <TextView

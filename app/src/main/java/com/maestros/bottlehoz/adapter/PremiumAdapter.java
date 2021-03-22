@@ -2,6 +2,7 @@ package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.activities.AllListingProductActivity;
+import com.maestros.bottlehoz.activities.DataImagePremium;
 import com.maestros.bottlehoz.databinding.RowLayoutFeedBinding;
 import com.maestros.bottlehoz.databinding.RowPremiumLayoutBinding;
 import com.maestros.bottlehoz.model.Feed;
@@ -24,9 +26,9 @@ public class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.MyViewHo
 
 
     private Context mContext;
-    private List<PremiumModel> premiumList;
+    private List<DataImagePremium.Data> premiumList;
 
-    public PremiumAdapter(Context mContext, List<PremiumModel> premiumList) {
+    public PremiumAdapter(Context mContext, List<DataImagePremium.Data> premiumList) {
         this.mContext = mContext;
         this.premiumList = premiumList;
     }
@@ -39,10 +41,11 @@ public class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-       // PremiumModel modelObject = premiumList.get(position);
+        DataImagePremium.Data modelObject = premiumList.get(position);
+
         try {
-            Glide.with(mContext).load(R.drawable.premium)
-                    .placeholder(R.drawable.premium).override(520, 520)
+            Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
+                    .error(R.drawable.dummy).override(520, 520)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.rowPremiumLayoutBinding.imgPremium);
         }catch (Exception e){
