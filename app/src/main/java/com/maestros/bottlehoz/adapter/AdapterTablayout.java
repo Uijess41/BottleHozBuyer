@@ -18,6 +18,7 @@ public class AdapterTablayout extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        //return DynamicallyFragment.addfrag(position);
         Fragment fragment = null;
         switch (position) {
 

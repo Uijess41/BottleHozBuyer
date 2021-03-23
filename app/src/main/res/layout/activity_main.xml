@@ -61,6 +61,7 @@
 
         <LinearLayout
             android:id="@+id/llayout"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvUser"
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp"
+
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:weightSum="1">
@@ -171,11 +173,48 @@
             </LinearLayout>
         </LinearLayout>
 
+
+
+          <LinearLayout
+                android:id="@+id/layoutBuyer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="0.50">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/buy"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:layout_gravity="center"
+                    android:text="Buyer"/>
+
+                </LinearLayout>
+          </LinearLayout>
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
             android:fontFamily="@font/sfprodisplay_semibold"
             android:text="@string/already_ac"
             android:layout_alignParentBottom="true"

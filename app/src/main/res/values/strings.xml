@@ -7,12 +7,12 @@
     <string name="login_">Please log in to your account</string>
     <string name="username">Username / Email id</string>
     <string name="email">Enter email</string>
-    <string name="password">Password</string>
     <string name="remember_me">Remember me</string>
     <string name="forget_pass">Forgot Password ?</string>
     <string name="not_ac">Dont have a account?<b>Sign up</b></string>
-    <string name="sign_up">Sign up</string>
+
     <string name="create_password">Create a password</string>
+    <string name="createPassword">Create Password</string>
     <string name="mobile">Mobile Number</string>
     <string name="already_ac">Already have an account ? <b><font color='black'>Login</font></b></string>
     <string name="sign_up_">New account creation</string>
@@ -24,11 +24,12 @@
     <string name="submit">Submit</string>
     <string name="verif">Verification</string>
     <string name="verify">Verify</string>
-    <string name="enter_pwd">Enter new password</string>
-    <string name="not_rec_code">Don\'t recieved the code. ?  </string>
+    <string name="enter_pwd">Enter your Email</string>
+    <string name="sign_up">Sign up</string>
+
     <string name="basic_info">Basic Information</string>
-    <string name="submit_detail">Submit details to Helium Liquor Delivery</string>
-    <string name="fullname">Fullname</string>
+    <string name="submit_detail">Submit details to Bottle Houz Delivery</string>
+    <string name="fullname">Full Name</string>
     <string name="choose_location">Choose Location</string>
     <string name="select_location">Select your location to serve you better</string>
     <string name="current_location">Current Location</string>
@@ -85,5 +86,18 @@
     <string name="stores">Stores</string>
     <string name="search">Search</string>
     <string name="featured">Featured</string>
-
+    <string name="username_email_id">Username / Email ID</string>
+    <string name="password">Password</string>
+    <string name="email_id">Email ID</string>
+    <string name="didn_t_recieved_the_code_resend_again">Didn\'t recieved the code ? Resend Again</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="are_you_thirsty">Are you thirsty?....</string>
+    <string name="popular_categories">Popular Categories</string>
+    <string name="brands">Brands</string>
+    <string name="my_cart">My Cart</string>
+    <string name="amount">Amount</string>
+    <string name="delivery_fee">Delivery Fee</string>
 </resources>

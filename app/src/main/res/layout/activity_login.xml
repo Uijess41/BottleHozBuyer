@@ -58,7 +58,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username / EmailId"
+                        android:hint="@string/username_email_id"
                         android:inputType="text"
                         android:textSize="13sp"
                         android:id="@+id/etEmail" />
@@ -83,7 +83,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:textSize="13sp"
                         android:inputType="textPassword"
                         android:id="@+id/etPwd" />
@@ -141,7 +141,7 @@
                     android:id="@+id/ivFb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/fb"/>
+                    android:src="@drawable/fbb"/>
 
                 <ImageView
                     android:id="@+id/ivTwitter"

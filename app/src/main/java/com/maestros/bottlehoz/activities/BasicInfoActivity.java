@@ -80,7 +80,7 @@ public class BasicInfoActivity extends AppCompatActivity {
                 .addBodyParameter("email", email)
                 .addBodyParameter("mobile", mobile)
                 .addBodyParameter("age_validation", age)
-                .addBodyParameter("type", userType)
+                .addBodyParameter("type", "3")
                 .addBodyParameter("name", strName)
                 .addBodyParameter("password",pwd)
                 .addBodyParameter("address", "sdjkf")

@@ -39,6 +39,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_PRODUCT_MORE;
+
 public class ShowCatWiseProductActivity extends AppCompatActivity {
    ActivityShowCatWiseProductBinding binding;
 
@@ -107,7 +109,7 @@ public class ShowCatWiseProductActivity extends AppCompatActivity {
         CustomDialog dialog=new CustomDialog();
         dialog.showDialog(R.layout.progress_layout,this);
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control", "Show_proudctbuyer")
+                .addBodyParameter("control", SHOW_PRODUCT_MORE)
                 .addBodyParameter("categoryID", stCategoryId)
                 .setTag("Show Category wise  Product")
                 .setPriority(Priority.HIGH)

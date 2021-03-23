@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="18dp"
-                android:text="@string/not_rec_code"/>
+                android:text="@string/didn_t_recieved_the_code_resend_again"/>
 
             <TextView
                 android:id="@+id/tvResend"

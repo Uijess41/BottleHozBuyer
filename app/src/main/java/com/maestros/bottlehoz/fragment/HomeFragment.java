@@ -26,6 +26,7 @@ import com.maestros.bottlehoz.activities.DataDiscount;
 import com.maestros.bottlehoz.activities.DataImagePremium;
 import com.maestros.bottlehoz.activities.DataPopularProduct;
 import com.maestros.bottlehoz.activities.RecommendedActivity;
+import com.maestros.bottlehoz.activities.ShowAllCategoryActivity;
 import com.maestros.bottlehoz.adapter.CategoryHome;
 import com.maestros.bottlehoz.adapter.CategorytAdapter;
 import com.maestros.bottlehoz.adapter.DataMoreLove;
@@ -57,6 +58,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BANNER;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BRAND;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_CATEGORY;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_DISCOUNT;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_PRODUCT_MORE;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_PRODUCT_POPULAR;
 
 public class HomeFragment extends Fragment {
 
@@ -113,7 +119,13 @@ public class HomeFragment extends Fragment {
           }
       });
 
-
+        binding.txtCatView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ShowAllCategoryActivity
+                        .class));
+            }
+        });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false);
         binding.rvCategory.setLayoutManager(layoutManager);
 
@@ -225,7 +237,7 @@ public class HomeFragment extends Fragment {
 
     private void getDiscountData() {
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control","show_coupon")
+                .addBodyParameter("control",SHOW_DISCOUNT)
                 .setTag("Show Discount")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -270,7 +282,7 @@ public class HomeFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getCategoryData() {
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control","show_category")
+                .addBodyParameter("control",SHOW_CATEGORY)
                 .setTag("Show Category")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -315,7 +327,7 @@ public class HomeFragment extends Fragment {
     private void getPopularData() {
 
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control","Show_proudctpapular")
+                .addBodyParameter("control",SHOW_PRODUCT_POPULAR)
                 .setTag("Show Popular Product")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -371,7 +383,7 @@ public class HomeFragment extends Fragment {
     private void getPremiumData() {
 
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control","show_brand")
+                .addBodyParameter("control",SHOW_BRAND)
                 .setTag("Show Premium Image")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -416,7 +428,7 @@ public class HomeFragment extends Fragment {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void getMoreData() {
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control","Show_proudctbuyer")
+                .addBodyParameter("control",SHOW_PRODUCT_MORE)
                 .setTag("Show More Love Product")
                 .setPriority(Priority.HIGH)
                 .build()

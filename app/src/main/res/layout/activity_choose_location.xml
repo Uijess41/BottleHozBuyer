@@ -17,7 +17,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_margin="5dp"
-           android:src="@drawable/back"/>
+           android:src="@drawable/greenback"/>
 
 
        <EditText
@@ -77,6 +77,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:text="@string/saved_add"
+           android:visibility="gone"
            android:layout_marginLeft="20dp"
            android:layout_marginTop="20dp"
            android:textColor="@color/black"
@@ -98,12 +99,12 @@
                android:layout_height="wrap_content">
 
                <EditText
+                   android:id="@+id/etFullname"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="@string/fullname"
-                   android:textSize="13sp"
                    android:inputType="text"
-                   android:id="@+id/etFullname" />
+                   android:textSize="13sp" />
 
            </com.google.android.material.textfield.TextInputLayout>
            <View
@@ -124,9 +125,11 @@
                <EditText
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:hint="Mobile No."
+                   android:hint="Mobile Number"
                    android:textSize="13sp"
-                   android:inputType="text"
+                   android:maxLength="10"
+                   android:singleLine="true"
+                   android:inputType="number"
                    android:id="@+id/etMobile" />
 
            </com.google.android.material.textfield.TextInputLayout>
@@ -142,26 +145,55 @@
                android:layout_height="wrap_content"
                android:layout_marginTop="5dp"
                android:text="State"
+               android:layout_marginStart="15dp"
                android:textSize="13sp"
                />
 
-           <Spinner
+           <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="10dp"/>
-
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_toRightOf="@+id/txt_model"
+               android:background="@drawable/greylight_stroke"
+               android:layout_height="30dp">
+               <Spinner
+                   android:id="@+id/spinState"
+                   android:layout_width="match_parent"
+                   android:textSize="14sp"
+                   android:layout_alignParentRight="true"
+                   android:padding="1dip"
+                   android:backgroundTint="@color/md_green_500"
+                   android:prompt="@string/state"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"/>
+           </RelativeLayout>
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginTop="5dp"
                android:text="City"
+               android:layout_marginStart="15dp"
                android:textSize="13sp"
                />
 
-           <Spinner
+           <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:padding="10dp"/>
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="10dp"
+               android:layout_toRightOf="@+id/txt_model"
+               android:background="@drawable/greylight_stroke"
+               android:layout_height="30dp">
+               <Spinner
+                   android:id="@+id/spinCity"
+                   android:layout_width="match_parent"
+                   android:textSize="14sp"
+                   android:layout_alignParentRight="true"
+                   android:padding="1dip"
+                   android:backgroundTint="@color/md_green_500"
+                   android:prompt="@string/city"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"/>
+           </RelativeLayout>
 
            <com.google.android.material.textfield.TextInputLayout
                android:layout_width="match_parent"
@@ -176,7 +208,9 @@
                    android:layout_height="wrap_content"
                    android:hint="Address"
                    android:textSize="13sp"
-                   android:inputType="textPassword"
+                   android:singleLine="true"
+                   android:maxLength="100"
+                   android:inputType="textPostalAddress"
                    android:id="@+id/etAddress" />
 
            </com.google.android.material.textfield.TextInputLayout>
@@ -198,9 +232,11 @@
                <EditText
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:hint="Address Title"
+                   android:hint="Address Title "
                    android:textSize="13sp"
-                   android:inputType="textPassword"
+                   android:singleLine="true"
+                   android:maxLength="50"
+                   android:inputType="textPostalAddress"
                    android:id="@+id/etAddressTitle" />
 
            </com.google.android.material.textfield.TextInputLayout>

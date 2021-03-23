@@ -57,7 +57,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="EmailId"
+                        android:hint="@string/email_id"
                         android:inputType="text"
                         android:maxLength="50"
                         android:textSize="13sp"
@@ -83,7 +83,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Create Password"
+                        android:hint="@string/createPassword"
                         android:textSize="13sp"
                         android:maxLength="30"
                         android:inputType="textPassword"
@@ -136,7 +136,8 @@
                     android:id="@+id/ivFb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/fb"/>
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/fbb"/>
 
                 <ImageView
                     android:id="@+id/ivTwitter"

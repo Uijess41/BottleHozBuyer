@@ -133,13 +133,31 @@
                 android:layout_height="wrap_content"
                />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/sfprodisplay_semibold"
-                android:text="@string/explore_categories"
-                android:textColor="@color/md_indigo_900" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:text="@string/explore_categories"
+                    android:textColor="@color/md_indigo_900" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:id="@+id/txtCatView"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:text="@string/view_all"
+                    android:textColor="@color/grey" />
+
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCategory"
