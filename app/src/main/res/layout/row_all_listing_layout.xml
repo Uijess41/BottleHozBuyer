@@ -78,7 +78,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
                     android:text="375 ml can i  5%"
-                    android:id="@+id/txtCount"
+                    android:id="@+id/txtDescription"
                     android:textColor="@color/greyNew"
                     android:textSize="12sp" />
 
@@ -89,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/txtCount"
+                    android:layout_below="@+id/txtDescription"
                     android:text="N1,800"
                     android:textColor="@color/black" />
 

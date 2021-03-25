@@ -2,7 +2,7 @@ package com.maestros.bottlehoz.model;
 
 public class ProductSimilarModel {
     String productName;
-    int image;
+    String image;
 
     public String getProductName() {
         return productName;
@@ -12,16 +12,23 @@ public class ProductSimilarModel {
         this.productName = productName;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public ProductSimilarModel(String productName, int image) {
-        this.productName = productName;
-        this.image = image;
+    public String getPath() {
+        return path;
     }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    String path;
+
+
 }

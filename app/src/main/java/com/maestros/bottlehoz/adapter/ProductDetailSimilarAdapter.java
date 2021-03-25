@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.RowFavoriteDealsLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowProductSimilarLayoutBinding;
 import com.maestros.bottlehoz.model.FavoriteModel;
@@ -35,7 +38,14 @@ public class ProductDetailSimilarAdapter extends RecyclerView.Adapter<ProductDet
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ProductSimilarModel modelObject = similarList.get(position);
         holder.productSimilarLayoutBinding.txtProName.setText(modelObject.getProductName());
-        holder.productSimilarLayoutBinding.ivSimProduct.setImageResource(modelObject.getImage());
+        try {
+            Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
+                    .placeholder(R.drawable.dummy).override(250, 250)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.productSimilarLayoutBinding.ivSimProduct);
+        } catch (Exception e) {
+
+        }
     }
 
     @Override

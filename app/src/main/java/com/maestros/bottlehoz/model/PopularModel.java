@@ -1,9 +1,38 @@
 package com.maestros.bottlehoz.model;
 
 public class PopularModel {
+    public String getName() {
+        return name;
+    }
 
-    String price,soldCoun;
-    int image;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    String price;
+    String image;
+    String id;
+    String path;
+    String name;
+    String count;
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    String categoryId;
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 
     public String getPrice() {
         return price;
@@ -13,25 +42,27 @@ public class PopularModel {
         this.price = price;
     }
 
-    public String getSoldCoun() {
-        return soldCoun;
-    }
-
-    public void setSoldCoun(String soldCoun) {
-        this.soldCoun = soldCoun;
-    }
-
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public PopularModel(String price, String soldCoun, int image) {
-        this.price = price;
-        this.soldCoun = soldCoun;
-        this.image = image;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

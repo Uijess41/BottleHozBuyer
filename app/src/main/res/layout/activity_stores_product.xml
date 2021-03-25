@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.StoresProductActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/demo1" />
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/greenback" />
+
+                <ImageView
+                    android:id="@+id/ivFavv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/greenback" />
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_height="50dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/ivSearch"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="15dp"
+                        android:padding="2dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/sear" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:singleLine="true"
+                        android:maxLength="80"
+                        android:textColor="@color/black"
+                        android:paddingLeft="10dp"
+                        android:hint="@string/search"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/card"
+                android:layout_marginTop="-45dp">
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:text="Hennessy Special"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtDescrip"
+                    android:layout_below="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Sprite-Beer-Wine"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_below="@+id/txtDescrip"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/green_round"
+                        android:layout_height="25dp">
+
+                        <ImageView
+                            android:id="@+id/imgstar"
+                            android:layout_width="15dp"
+                            android:paddingLeft="2dp"
+                            android:layout_height="20dp"
+                            android:layout_toRightOf="@+id/txtCount"
+                            android:src="@drawable/redstar" />
+
+                        <TextView
+                            android:id="@+id/txtrate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/imgstar"
+                            android:paddingRight="2dp"
+                            android:text="4.9"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="70dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/greynewstroke"
+                        android:layout_height="25dp">
+
+                        <ImageView
+                            android:id="@+id/imgTime"
+                            android:layout_width="15dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_height="20dp"
+                            android:layout_toRightOf="@+id/txtCount"
+                            android:src="@drawable/time" />
+
+                        <TextView
+                            android:id="@+id/txtTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/imgTime"
+                            android:layout_marginLeft="5dp"
+                            android:text="27"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/greynewstroke"
+                        android:layout_height="25dp">
+
+                        <ImageView
+                            android:id="@+id/imgDistance"
+                            android:layout_width="15dp"
+                            android:layout_height="20dp"
+                            android:layout_toRightOf="@+id/txtCount"
+                            android:src="@drawable/loco" />
+
+                        <TextView
+                            android:id="@+id/txtDistance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/imgDistance"
+                            android:layout_marginLeft="5dp"
+                            android:text="205 m"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

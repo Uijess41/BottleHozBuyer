@@ -58,7 +58,7 @@ public class ShowAllCategoryActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("HomeFragment", response.toString());
+                        Log.e("ShowAllCategoryActivity", response.toString());
                         dialog.hideDialog();
                         try {
                             if (response.getBoolean("result") == true) {
@@ -78,7 +78,7 @@ public class ShowAllCategoryActivity extends AppCompatActivity {
                                 binding.rvCategory.setAdapter(adapterCat);
                             }
                         } catch (JSONException e) {
-                            Log.e("HomeFragment", "e: " + e.getMessage());
+                            Log.e("ShowAllCategoryActivity", "e: " + e.getMessage());
                             dialog.hideDialog();
                         }
 
@@ -105,7 +105,8 @@ public class ShowAllCategoryActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("HomeFragment", response.toString());
+
+                        Log.e("ShowAllCategoryActivity", response.toString());
                         try {
                             if (response.getBoolean("result") == true) {
 
@@ -125,7 +126,7 @@ public class ShowAllCategoryActivity extends AppCompatActivity {
                                 binding.rvBrands.setAdapter(adapterPremium);
                             }
                         } catch (JSONException e) {
-                            Log.e("HomeFragment", "e: " + e.getMessage());
+                            Log.e("ShowAllCategoryActivity", "e: " + e.getMessage());
                         }
 
 

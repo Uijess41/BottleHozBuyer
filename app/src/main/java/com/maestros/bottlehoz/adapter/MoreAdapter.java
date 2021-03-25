@@ -41,9 +41,8 @@ public class MoreAdapter extends RecyclerView.Adapter<MoreAdapter.MyViewHolder>{
 
         holder.rowMoreLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
         holder.rowMoreLayoutBinding.txtName.setText(modelObject.getName());
-  //    holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
-
-   //   holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
+        holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getProduct_sold()+"Sold");
+        holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
 
 
         if (modelObject.getImages().size()==0){

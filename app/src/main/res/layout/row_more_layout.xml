@@ -84,7 +84,7 @@
                 android:layout_below="@+id/txtPrice"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="3dp"
-                android:text="98 Sold |"
+                android:text="-|"
                 android:id="@+id/txtCount"
                 android:textColor="@color/greyNew"
                 android:textSize="12sp" />
@@ -118,7 +118,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_toRightOf="@+id/imgstart"
                     android:layout_marginTop="3dp"
-                    android:text="4.5"
+                    android:text=""
                     android:id="@+id/txtCRate"
                     android:textColor="@color/greyNew"
                     android:textSize="12sp" />

@@ -6,7 +6,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardNew1"
         android:layout_width="170dp"
-        android:layout_height="220dp"
+        android:layout_height="210dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
@@ -68,8 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtPrice"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="1200 Sold"
+                android:layout_marginTop="2dp"
+                android:text="-"
                 android:id="@+id/txtCount"
                 android:textColor="@color/greyNew"
                 android:textSize="12sp" />

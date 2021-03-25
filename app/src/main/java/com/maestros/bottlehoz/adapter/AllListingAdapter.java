@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.RowAllListingLayoutBinding;
 import com.maestros.bottlehoz.model.AllListingModel;
 
@@ -33,17 +36,17 @@ public class AllListingAdapter extends RecyclerView.Adapter<AllListingAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AllListingModel modelObject = allList.get(position);
         holder.rowAllListingLayoutBinding.txtName.setText(modelObject.getProductName());
-        holder.rowAllListingLayoutBinding.txtPrice.setText(modelObject.getPrice());
-        holder.rowAllListingLayoutBinding.imgPopular.setImageResource(modelObject.getImage());
+        holder.rowAllListingLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
+        holder.rowAllListingLayoutBinding.txtDescription.setText(modelObject.getDescription());
 
-       /* try {
-            Glide.with(mContext).load(R.drawable.imageb)
-                    .placeholder(R.drawable.imageb).override(250, 250)
+       try {
+            Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
+                    .placeholder(R.drawable.dummy).override(250, 250)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.rowCatproductLayoutBinding.imgcategory);
+                    .into(holder.rowAllListingLayoutBinding.imgPopular);
         } catch (Exception e) {
 
-        }*/
+        }
 
 
     }

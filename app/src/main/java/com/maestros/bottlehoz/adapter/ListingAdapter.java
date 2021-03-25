@@ -36,10 +36,10 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ListingModel modelObject = List.get(position);
       holder.rowListingLayoutBinding.txtListName.setText(modelObject.getName());
-      holder.rowListingLayoutBinding.txtPrice.setText(modelObject.getPrice());
+      holder.rowListingLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
 
    try {
-       Glide.with(mContext).load(R.drawable.imageb)
+       Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
                .placeholder(R.drawable.imageb).override(150, 150)
                .diskCacheStrategy(DiskCacheStrategy.ALL)
                .into(holder.rowListingLayoutBinding.imgPremium);

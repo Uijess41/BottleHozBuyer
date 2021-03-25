@@ -14,5 +14,10 @@ public class BaseUrl {
     public static final String SHOW_BRAND="show_brand";
     public static final String SHOW_PRODUCT_POPULAR="Show_proudctpapular";
     public static final String SHOW_PRODUCT_MORE="Show_proudctbuyer";
+    public static final String SHOW_PREMIUM_PRODUCT="Show_proudctpremium";
+    public static final String SHOW_RECOMMENDED_PRODUCT="Show_proudctrecommonded";
+    public static final String SHOW_FILTER_PRODUCT="show_proudct_by_cat";
+    public static final String SHOW_SIMILAR_PRODUCT="show_proudct_simillar";
+    public static final String SHOW_PRODUCT_DETAILS="product_detailss";
 
 }

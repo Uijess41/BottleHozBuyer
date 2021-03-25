@@ -19,6 +19,8 @@ import com.maestros.bottlehoz.databinding.RowLayoutFeedBinding;
 import com.maestros.bottlehoz.databinding.RowPremiumLayoutBinding;
 import com.maestros.bottlehoz.model.Feed;
 import com.maestros.bottlehoz.model.PremiumModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.List;
 
@@ -55,6 +57,7 @@ public class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.MyViewHo
         holder.rowPremiumLayoutBinding.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedHelper.putKey(mContext, AppConstats.PREMIUMPRODUCTID ,modelObject.getBrandID());
                 mContext.startActivity(new Intent(mContext, AllListingProductActivity.class));
             }
         });

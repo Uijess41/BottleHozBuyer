@@ -18,6 +18,8 @@ data class DataMoreLove(
         val min_order: String,
         val max_order: String,
         val discount: String,
+        val rating: String,
+        val product_sold: String,
         val status: String,
         val strtotime: String,
         val images: List<Image>,

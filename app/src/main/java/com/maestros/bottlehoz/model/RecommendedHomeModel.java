@@ -1,21 +1,22 @@
 package com.maestros.bottlehoz.model;
 
-public class AllListingModel {
+public class RecommendedHomeModel {
 
     String productName;
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    String productId;
     String price;
     String image;
     String path;
+    String catName;
+
+    public String getCatName() {
+        return catName;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    String description;
 
     public String getProductName() {
         return productName;
@@ -57,7 +58,15 @@ public class AllListingModel {
         this.description = description;
     }
 
-    String description;
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    String productId;
 
 
 }

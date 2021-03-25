@@ -16,6 +16,8 @@ import com.maestros.bottlehoz.activities.DataPopularProduct;
 import com.maestros.bottlehoz.activities.ProductDetailActivity;
 import com.maestros.bottlehoz.databinding.RowPopularLayoutBinding;
 import com.maestros.bottlehoz.model.PopularModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.List;
 
@@ -23,9 +25,9 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
 
 
     private Context mContext;
-    private List<DataPopularProduct .Data> popularList;
+    private List<PopularModel> popularList;
 
-    public PopularAdapter(Context mContext, List<DataPopularProduct .Data> popularList) {
+    public PopularAdapter(Context mContext, List<PopularModel> popularList) {
         this.mContext = mContext;
         this.popularList = popularList;
     }
@@ -38,22 +40,24 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        DataPopularProduct .Data modelObject = popularList.get(position);
-      holder.rowPopularLayoutBinding.txtPrice.setText(modelObject.getPrice());
+        PopularModel modelObject = popularList.get(position);
+      holder.rowPopularLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
       holder.rowPopularLayoutBinding.txtName.setText(modelObject.getName());
-     // holder.rowPopularLayoutBinding.txtCount.setText(modelObject.getSoldCoun());
+       holder.rowPopularLayoutBinding.txtCount.setText(modelObject.getCount()+"Sold");
 
-  /* try {
-       Glide.with(mContext).load(modelObject.getImages()+get)
+   try {
+       Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
                .placeholder(R.drawable.dummy).override(250, 250)
                .diskCacheStrategy(DiskCacheStrategy.ALL)
                .into(holder.rowPopularLayoutBinding.imgPopular);
    }catch (Exception e){
 
-   }*/
+   }
      holder.rowPopularLayoutBinding.cardNew1.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+             SharedHelper.putKey(mContext, AppConstats.CATEGORYID, modelObject.getCategoryId());
+             SharedHelper.putKey(mContext, AppConstats.PRODUCTID, modelObject.getId());
              mContext.startActivity(new Intent(mContext, ProductDetailActivity.class));
          }
      });

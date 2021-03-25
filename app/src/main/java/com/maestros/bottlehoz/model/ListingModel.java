@@ -2,9 +2,7 @@ package com.maestros.bottlehoz.model;
 
 public class ListingModel {
 
-    String name;
-    String price;
-    int image;
+    String name,price,image,path,productId;
 
     public String getName() {
         return name;
@@ -22,17 +20,27 @@ public class ListingModel {
         this.price = price;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public ListingModel(String name, String price, int image) {
-        this.name = name;
-        this.price = price;
-        this.image = image;
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 }
