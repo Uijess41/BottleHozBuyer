@@ -26,6 +26,16 @@ public class PopularModel {
 
     String categoryId;
 
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    String sellerId;
+
     public String getCount() {
         return count;
     }

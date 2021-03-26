@@ -102,6 +102,7 @@ public class BasicInfoActivity extends AppCompatActivity {
                            Log.e("model>>",model.getData().getEmail());*/
 
                             if (response.getBoolean("result")==true){
+
                                 SharedHelper.putKey(getApplicationContext(), AppConstats.USER_ID, "");
                                 startActivity(new Intent(context, BottomNavActivity.class));
 

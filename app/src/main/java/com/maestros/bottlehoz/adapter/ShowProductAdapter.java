@@ -1,8 +1,10 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,10 +14,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.activities.DataCatViseProduct;
+import com.maestros.bottlehoz.activities.ProductDetailActivity;
 import com.maestros.bottlehoz.databinding.RowAllListingLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowShowCategoryLayoutBinding;
 import com.maestros.bottlehoz.model.AllListingModel;
 import com.maestros.bottlehoz.model.ShowCatWiseProductModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.List;
 
@@ -59,6 +64,15 @@ public class ShowProductAdapter extends RecyclerView.Adapter<ShowProductAdapter.
         }
 
 
+       holder.rowShowCategoryLayoutBinding.rlMain.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               SharedHelper.putKey(mContext, AppConstats.CATEGORYID, modelObject.getCategoryID());
+               SharedHelper.putKey(mContext, AppConstats.PRODUCTID, modelObject.getProductID());
+               SharedHelper.putKey(mContext, AppConstats.SELLERID, modelObject.getSellerID());
+               mContext.startActivity(new Intent(mContext, ProductDetailActivity.class));
+           }
+       });
 
 
     }

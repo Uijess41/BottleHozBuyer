@@ -1,7 +1,9 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,10 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.ProductDetailActivity;
 import com.maestros.bottlehoz.databinding.RowRecommendLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowRecommendedHomeLayoutBinding;
 import com.maestros.bottlehoz.model.RecommendedHomeModel;
 import com.maestros.bottlehoz.model.RecommentModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.List;
 
@@ -39,6 +44,7 @@ public class RecommendedHomeAdapter extends RecyclerView.Adapter<RecommendedHome
         RecommendedHomeModel modelObject = recommentList.get(position);
         holder.rowRecommendedHomeLayoutBinding.txtName.setText(modelObject.getProductName());
         holder.rowRecommendedHomeLayoutBinding.txtCan.setText(modelObject.getDescription());
+        holder.rowRecommendedHomeLayoutBinding.txtCategory.setText(modelObject.getCatName());
         holder.rowRecommendedHomeLayoutBinding.txPriceRecommend.setText("₦"+modelObject.getPrice());
 
      try {
@@ -49,6 +55,17 @@ public class RecommendedHomeAdapter extends RecyclerView.Adapter<RecommendedHome
         } catch (Exception e) {
 
         }
+
+
+        holder.rowRecommendedHomeLayoutBinding.rlHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedHelper.putKey(mContext, AppConstats.SELLERID, modelObject.getSellerId());
+                SharedHelper.putKey(mContext, AppConstats.CATEGORYID, modelObject.getCategoryId());
+                SharedHelper.putKey(mContext, AppConstats.PRODUCTID, modelObject.getProductId());
+                mContext.startActivity(new Intent(mContext, ProductDetailActivity.class));
+            }
+        });
 
 
     }

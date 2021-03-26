@@ -14,7 +14,9 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.maestros.bottlehoz.databinding.ActivityLoginBinding
 import com.maestros.bottlehoz.retrofit.BaseUrl
+import com.maestros.bottlehoz.utils.AppConstats
 import com.maestros.bottlehoz.utils.Connectivity
+import com.maestros.bottlehoz.utils.SharedHelper
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -92,6 +94,17 @@ class LoginActivity : AppCompatActivity() {
                            if (gson.fromJson(response.getJSONObject("result").toString().equals(""),))
                             Log.e("model>>",model.getData().getEmail());*/
                         if (response.getBoolean("result") == true) {
+
+                            val json = JSONObject(response.getString("data"))
+
+                            SharedHelper.putKey(context, AppConstats.USER_ID, json.getString("userID"))
+                            SharedHelper.putKey(context, AppConstats.USER_NAME, json.getString("name"))
+                            SharedHelper.putKey(context, AppConstats.USER_EMAIL, json.getString("email"))
+                            SharedHelper.putKey(context, AppConstats.USER_PASSWORD, json.getString("password"))
+                            SharedHelper.putKey(context, AppConstats.USER_MOBILE, json.getString("mobile"))
+                            SharedHelper.putKey(context, AppConstats.USER_TYPE, json.getString("type"))
+                            SharedHelper.putKey(context, AppConstats.USER_AGE, json.getString("age_validation"))
+
                             startActivity(Intent(applicationContext, BottomNavActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
 
                         } else {
@@ -101,12 +114,13 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } catch (e: JSONException) {
-                        e.printStackTrace()
+                        Log.e("jksjkcj", "onResponse: ",e )
                     }
                 }
 
                 override fun onError(error: ANError) {
                  error("err")
+                    Log.e("jksjkcj", "onResponse: ",error )
                 }
             })
     }

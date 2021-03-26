@@ -27,7 +27,9 @@ import com.maestros.bottlehoz.model.FeatureRecommentModel;
 import com.maestros.bottlehoz.model.RecommendedHomeModel;
 import com.maestros.bottlehoz.model.RecommentModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,15 +44,16 @@ import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_RECOMMENDED_PRODUCT;
 public class AllListingProductActivity extends AppCompatActivity {
     ActivityAllListingProductBinding binding;
 
-
+    String brandName="";
     private List<AllListingModel> allList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAllListingProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        brandName = SharedHelper.getKey(getApplicationContext(), AppConstats.BRANDNAME);
 
-
+        binding.txt.setText(brandName);
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +68,14 @@ public class AllListingProductActivity extends AppCompatActivity {
     }
 
     private void getAllListData() {
+
+        String brandId = SharedHelper.getKey(getApplicationContext(), AppConstats.BRANDID);
         CustomDialog dialog = new CustomDialog();
         dialog.showDialog(R.layout.progress_layout, this);
 
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_FILTER_PRODUCT)
+                .addBodyParameter("brandID", brandId)
                 .setTag("Show Filter Product")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -97,6 +103,8 @@ public class AllListingProductActivity extends AppCompatActivity {
 
                                         AllListingModel model = new AllListingModel();
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setProductName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setDescription(jsonObject.getString("description"));
@@ -119,8 +127,9 @@ public class AllListingProductActivity extends AppCompatActivity {
                             }
 
                             else {
-
-                                Toast.makeText(AllListingProductActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                                binding.lotiAnimation.setVisibility(View.VISIBLE);
+                                binding.txtNo.setVisibility(View.VISIBLE);
+                             //   Toast.makeText(AllListingProductActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                                 dialog.hideDialog();
                             }
                         } catch (JSONException e) {

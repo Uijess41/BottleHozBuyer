@@ -16,8 +16,10 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.ActivityVerifyBinding;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.Connectivity;
 import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,13 +97,25 @@ public class VerifyActivity extends AppCompatActivity {
                         try {
 
                             if (response.getBoolean("result")==true){
-                                startActivity(new Intent(context, BasicInfoActivity.class)
-                                        .putExtra("email", email)
+                                String data=response.getString("data");
+                                JSONObject jsonObject=new JSONObject(data);
+                                startActivity(new Intent(context, BasicInfoActivity.class));
+
+                                        SharedHelper.putKey(context, AppConstats.USER_ID, jsonObject.getString("userID"));
+                                        SharedHelper.putKey(context, AppConstats.USER_NAME, jsonObject.getString("name"));
+                                        SharedHelper.putKey(context, AppConstats.USER_EMAIL, jsonObject.getString("email"));
+                                        SharedHelper.putKey(context, AppConstats.USER_PASSWORD, jsonObject.getString("password"));
+                                        SharedHelper.putKey(context, AppConstats.USER_MOBILE, jsonObject.getString("mobile"));
+                                        SharedHelper.putKey(context, AppConstats.USER_TYPE, jsonObject.getString("type"));
+                                        SharedHelper.putKey(context, AppConstats.USER_AGE, jsonObject.getString("age_validation"));
+                                         finish();
+
+                                     /*           .putExtra("email", email)
                                         .putExtra("pwd", pwd)
                                         .putExtra("mobile", mobile)
                                         .putExtra("userType", userType)
-                                        .putExtra("age", age));
-                                finish();
+                                        .putExtra("age", age));*/
+
 
                             }else {
                                 Toast.makeText(context, ""+response.getString("message"), Toast.LENGTH_SHORT).show();

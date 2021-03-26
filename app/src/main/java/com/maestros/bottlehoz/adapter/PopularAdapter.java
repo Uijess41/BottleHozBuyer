@@ -58,6 +58,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
          public void onClick(View v) {
              SharedHelper.putKey(mContext, AppConstats.CATEGORYID, modelObject.getCategoryId());
              SharedHelper.putKey(mContext, AppConstats.PRODUCTID, modelObject.getId());
+             SharedHelper.putKey(mContext, AppConstats.SELLERID, modelObject.getSellerId());
              mContext.startActivity(new Intent(mContext, ProductDetailActivity.class));
          }
      });

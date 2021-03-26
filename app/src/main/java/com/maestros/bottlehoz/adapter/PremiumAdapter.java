@@ -57,7 +57,8 @@ public class PremiumAdapter extends RecyclerView.Adapter<PremiumAdapter.MyViewHo
         holder.rowPremiumLayoutBinding.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedHelper.putKey(mContext, AppConstats.PREMIUMPRODUCTID ,modelObject.getBrandID());
+                SharedHelper.putKey(mContext, AppConstats.BRANDID ,modelObject.getBrandID());
+                SharedHelper.putKey(mContext, AppConstats.BRANDNAME ,modelObject.getName());
                 mContext.startActivity(new Intent(mContext, AllListingProductActivity.class));
             }
         });

@@ -39,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_FILTER_PRODUCT;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_PRODUCT_MORE;
 
 public class ShowCatWiseProductActivity extends AppCompatActivity {
@@ -46,6 +47,7 @@ public class ShowCatWiseProductActivity extends AppCompatActivity {
 
     private List<ShowCatWiseProductModel> productArrayList=new ArrayList<>();
     String stCategoryId="",stCategoryName="";
+    @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class ShowCatWiseProductActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         stCategoryId = SharedHelper.getKey(getApplicationContext(), AppConstats.CATEGORYID);
         stCategoryName = SharedHelper.getKey(getApplicationContext(), AppConstats.CATEGORYNAME);
+
+        Log.e("ShowCatWiseProductActivity", "stCategoryId: " +stCategoryId);
         binding.txtCatName.setText(stCategoryName);
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +113,7 @@ public class ShowCatWiseProductActivity extends AppCompatActivity {
         CustomDialog dialog=new CustomDialog();
         dialog.showDialog(R.layout.progress_layout,this);
         AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control", SHOW_PRODUCT_MORE)
+                .addBodyParameter("control", SHOW_FILTER_PRODUCT)
                 .addBodyParameter("categoryID", stCategoryId)
                 .setTag("Show Category wise  Product")
                 .setPriority(Priority.HIGH)
@@ -134,12 +138,20 @@ public class ShowCatWiseProductActivity extends AppCompatActivity {
                                     arrayList.addAll(dataProduct.getData());
 
                                 } else {
+
+
                                     Toast.makeText(ShowCatWiseProductActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
 
 
                                 ShowProductAdapter productAdapter = new ShowProductAdapter(ShowCatWiseProductActivity.this, arrayList);
                                 binding.rvCategory.setAdapter(productAdapter);
+                            }
+                            else {
+
+                                binding.lotiAnimation.setVisibility(View.VISIBLE);
+                                binding.txtNo.setVisibility(View.VISIBLE);
+                                dialog.hideDialog();
                             }
                         } catch (JSONException e) {
                             Log.e("ShowCatWiseProductActivity", "e: " + e.getMessage());

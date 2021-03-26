@@ -101,7 +101,7 @@
                 android:id="@+id/ivProduct"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_margin="3dp"
                 android:background="#F8F7F7"
                 android:layout_marginTop="20dp"

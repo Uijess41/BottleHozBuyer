@@ -77,4 +77,7 @@ dependencies {
 
     //sparkimage
     implementation 'com.github.varunest:sparkbutton:1.0.6'
+
+    ///Toasty
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
 }

@@ -1,7 +1,9 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.ProductDetailActivity;
 import com.maestros.bottlehoz.databinding.RowListingLayoutBinding;
 import com.maestros.bottlehoz.model.ListingModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.List;
 
@@ -46,6 +51,17 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.MyViewHo
    }catch (Exception e){
 
    }
+
+
+        holder.rowListingLayoutBinding.rlHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedHelper.putKey(mContext, AppConstats.CATEGORYID, modelObject.getCategoryId());
+                SharedHelper.putKey(mContext, AppConstats.PRODUCTID, modelObject.getProductId());
+                SharedHelper.putKey(mContext, AppConstats.SELLERID, modelObject.getSellerId());
+                mContext.startActivity(new Intent(mContext, ProductDetailActivity.class));
+            }
+        });
 
     }
 

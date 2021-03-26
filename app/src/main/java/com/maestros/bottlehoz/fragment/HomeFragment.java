@@ -160,12 +160,12 @@ public class HomeFragment extends Fragment {
         onBack(view);
         Connectivity connectivity = new Connectivity(getActivity());
         if (connectivity.isOnline()) {
-         //   getMoreData();
+            //   getMoreData();
             getDiscountData();
             getCategoryData();
             getPopularData();
             getListingData();
-            getPremiumData();
+            getBrandData();
             showBanner();
             getRecommendedProduct();
         } else {
@@ -336,7 +336,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("HomeFragmentPopular", response.toString());
-                        popularList=new ArrayList<>();
+                        popularList = new ArrayList<>();
                         try {
                             if (response.getBoolean("result") == true) {
 
@@ -358,6 +358,7 @@ public class HomeFragment extends Fragment {
                                             model.setId(jsonObject.getString("productID"));
                                             model.setName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setCategoryId(jsonObject.getString("categoryID"));
                                             model.setCount(jsonObject.getString("product_sold"));
                                             if (!images.equals("")) {
@@ -373,6 +374,7 @@ public class HomeFragment extends Fragment {
                                             model.setId(jsonObject.getString("productID"));
                                             model.setCategoryId(jsonObject.getString("categoryID"));
                                             model.setName(jsonObject.getString("name"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setCount(jsonObject.getString("product_sold"));
                                             if (!images.equals("")) {
@@ -387,6 +389,7 @@ public class HomeFragment extends Fragment {
                                             PopularModel model = new PopularModel();
                                             model.setId(jsonObject.getString("productID"));
                                             model.setName(jsonObject.getString("name"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setCategoryId(jsonObject.getString("categoryID"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setCount(jsonObject.getString("product_sold"));
@@ -448,6 +451,8 @@ public class HomeFragment extends Fragment {
                                         if (i == 0) {
                                             ListingModel model = new ListingModel();
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             if (!images.equals("")) {
@@ -463,6 +468,8 @@ public class HomeFragment extends Fragment {
 
                                             ListingModel model = new ListingModel();
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             if (!images.equals("")) {
@@ -476,6 +483,8 @@ public class HomeFragment extends Fragment {
 
                                             ListingModel model = new ListingModel();
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
                                             model.setName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             if (!images.equals("")) {
@@ -509,11 +518,11 @@ public class HomeFragment extends Fragment {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void getPremiumData() {
+    private void getBrandData() {
 
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_BRAND)
-                .setTag("Show Premium Image")
+                .setTag("Show Brand Image")
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -603,7 +612,9 @@ public class HomeFragment extends Fragment {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void getRecommendedProduct() {
+
+
+    private void getRecommendedProduct(){
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_RECOMMENDED_PRODUCT)
                 .setTag("Show Recommended Product")
@@ -613,87 +624,110 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.e("HomeFragment", "onResponse: " + response.toString());
-
-
                         try {
-                            if (response.getBoolean("result") == true) {
-
+                            if (response.getBoolean("result") == true){
                                 String data = response.getString("data");
                                 JSONArray jsonArray = new JSONArray(data);
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                                    String images = jsonObject.getString("images");
-                                   /* String category_info = jsonObject.getString("category_info");
-                                    JSONArray jsonArray1=new JSONArray(category_info);
-                                    for (int k = 0; k <jsonArray1.length() ; k++) {
+                                    String category_info = jsonObject.getString("category_info");
+                                    if (!category_info.equals(null)) {
+                                        JSONObject jsonObject1=new JSONObject(category_info);
+                                        String catName=jsonObject1.getString("name");
+                                        Log.e("HomeFragment", "catName: " +catName);
                                         RecommendedHomeModel model = new RecommendedHomeModel();
-                                        JSONObject jsonObject1=jsonArray1.getJSONObject(k);
-                                        String nameCat=jsonObject1.getString("name");
-                                    }*/
-
-                                    JSONArray array = new JSONArray(images);
-                                    for (int j = 0; j < array.length(); j++) {
-                                        JSONObject object = array.getJSONObject(j);
-
                                         if (i == 0) {
-                                            RecommendedHomeModel model = new RecommendedHomeModel();
+                                            String images = jsonObject.getString("images");
+                                            JSONArray array = new JSONArray(images);
+                                            for (int j = 0; j < array.length(); j++) {
+
+                                                JSONObject object = array.getJSONObject(j);
+                                                String image = object.getString("image");
+                                                String path = object.getString("path");
+
+
+                                                if (!images.equals("")) {
+                                                    model.setImage(object.getString("image"));
+                                                    model.setPath(object.getString("path"));
+
+                                                }
+                                            }
                                             model.setProductId(jsonObject.getString("productID"));
-                                           // model.setProductId(jsonObject1.getString("name"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setCatName(jsonObject1.getString("name"));
                                             model.setProductName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setDescription(jsonObject.getString("description"));
-                                            if (!images.equals("")) {
-                                                model.setImage(object.getString("image"));
-                                                model.setPath(object.getString("path"));
-                                                recommendHomeList.add(model);
-                                            }
 
+                                            recommendHomeList.add(model);
                                         }
 
                                         if (i == 1) {
 
+                                            String images = jsonObject.getString("images");
+                                            JSONArray array = new JSONArray(images);
+                                            for (int j = 0; j < array.length(); j++) {
+                                                JSONObject object = array.getJSONObject(j);
+                                                if (!images.equals("")) {
+                                                    model.setImage(object.getString("image"));
+                                                    model.setPath(object.getString("path"));
 
-                                            RecommendedHomeModel model = new RecommendedHomeModel();
+                                                }
+                                            }
+
+
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
                                             model.setProductName(jsonObject.getString("name"));
+                                            model.setCatName(jsonObject1.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setDescription(jsonObject.getString("description"));
-                                            if (!images.equals("")) {
-                                                model.setImage(object.getString("image"));
-                                                model.setPath(object.getString("path"));
-                                                recommendHomeList.add(model);
-                                            }
+                                            recommendHomeList.add(model);
                                         }
 
                                         if (i == 2) {
 
-                                            RecommendedHomeModel model = new RecommendedHomeModel();
+                                            String images = jsonObject.getString("images");
+                                            JSONArray array = new JSONArray(images);
+                                            for (int j = 0; j < array.length(); j++) {
+
+                                                JSONObject object = array.getJSONObject(j);
+                                                String image = object.getString("image");
+                                                String path = object.getString("path");
+
+
+                                                if (!images.equals("")) {
+                                                    model.setImage(object.getString("image"));
+                                                    model.setPath(object.getString("path"));
+
+                                                }
+                                            }
+
                                             model.setProductId(jsonObject.getString("productID"));
+                                            model.setSellerId(jsonObject.getString("sellerID"));
+                                            model.setCategoryId(jsonObject.getString("categoryID"));
+                                            model.setCatName(jsonObject1.getString("name"));
                                             model.setProductName(jsonObject.getString("name"));
                                             model.setPrice(jsonObject.getString("price"));
                                             model.setDescription(jsonObject.getString("description"));
-                                            if (!images.equals("")) {
-                                                model.setImage(object.getString("image"));
-                                                model.setPath(object.getString("path"));
-                                                recommendHomeList.add(model);
-                                            }
+                                            recommendHomeList.add(model);
                                         }
 
 
-                                    }
 
+                                    }
 
                                 }
                                 RecommendedHomeAdapter adapterHome = new RecommendedHomeAdapter(context, recommendHomeList);
                                 binding.rvRecommend.setAdapter(adapterHome);
                             }
+
                         } catch (JSONException e) {
-                            Log.e("HomeFragment", "e: " + e.getMessage());
+                            e.printStackTrace();
                         }
-
-
                     }
 
                     @Override
@@ -702,8 +736,8 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-    }
 
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onBack(View view) {
@@ -742,4 +776,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
+
+
 }

@@ -7,6 +7,25 @@ public class RecommendedHomeModel {
     String image;
     String path;
     String catName;
+    String sellerId;
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    String categoryId;
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
 
     public String getCatName() {
         return catName;

@@ -57,6 +57,32 @@
             android:id="@+id/rvAllList"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lotiAnimation"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="30dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="no.json"
+            app:lottie_loop="true" />
+
+
+        <TextView
+            android:id="@+id/txtNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_semibold"
+            android:layout_gravity="center"
+            android:text="Not Available "
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="italic" />
+
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>
