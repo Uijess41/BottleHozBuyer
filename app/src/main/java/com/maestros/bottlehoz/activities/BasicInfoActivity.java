@@ -14,10 +14,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.maestros.bottlehoz.databinding.ActivityBasicInfoBinding;
-import com.maestros.bottlehoz.model.SignupModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
 import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.SharedHelper;
@@ -54,7 +52,7 @@ public class BasicInfoActivity extends AppCompatActivity {
         binding.btnChooseLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, ChooseLocationActivity.class));
+                startActivity(new Intent(context, AddAddressActivity.class));
             }
         });
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/grey_stroke"
+        android:layout_margin="10dp"
+        android:layout_height="150dp">
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/addbutton" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/sfprodisplay_semibold"
+            android:layout_alignParentBottom="true"
+            android:text="@string/edit"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/md_red_600"
+            android:textSize="16sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:gravity="center"
+                android:text="Home"
+                android:id="@+id/txtType"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/green_rounded"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:gravity="center"
+                android:text="Favour Agesa"
+                android:id="@+id/txtName"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="701 8th Ave"
+                android:id="@+id/txtAddress"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/greyNew"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/sfprodisplay_semibold"
+                android:text="Brooklyn, NY 11215,USA"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/greyNew"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

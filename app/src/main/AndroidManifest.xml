@@ -15,9 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottleHoz"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.StoresProductActivity"></activity>
-        <activity android:name=".activities.AddToCartActivity"></activity>
-        <activity android:name=".activities.ShowAllCategoryActivity"></activity>
+        <activity android:name=".activities.CartActivity"></activity>
+        <activity android:name=".activities.ChooseLocationActivity" />
+        <activity
+            android:name=".activities.ManageAddressActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activities.StoresProductActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activities.AddToCartActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activities.ShowAllCategoryActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activities.ShowCatWiseProductActivity"
             android:configChanges="orientation|screenSize"
@@ -72,7 +87,7 @@
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name=".activities.ChooseLocationActivity"
+            android:name=".activities.AddAddressActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
@@ -106,14 +121,13 @@
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

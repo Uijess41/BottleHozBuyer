@@ -29,6 +29,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/backgroundpercent"
                     android:gravity="center"
+                    android:id="@+id/txLocation"
                     android:text="Oxford Street"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

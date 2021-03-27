@@ -97,7 +97,10 @@
     <string name="are_you_thirsty">Are you thirsty?....</string>
     <string name="popular_categories">Popular Categories</string>
     <string name="brands">Brands</string>
-    <string name="my_cart">My Cart</string>
     <string name="amount">Amount</string>
     <string name="delivery_fee">Delivery Fee</string>
+    <string name="manage_address">Manage Address</string>
+    <string name="saved_address">Saved Address</string>
+    <string name="edit">Edit</string>
+    <string name="my_cart">My Cart</string>
 </resources>

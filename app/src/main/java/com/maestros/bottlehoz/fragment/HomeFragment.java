@@ -24,9 +24,10 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.Gson;
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.CartActivity;
 import com.maestros.bottlehoz.activities.DataDiscount;
 import com.maestros.bottlehoz.activities.DataImagePremium;
-import com.maestros.bottlehoz.activities.DataPopularProduct;
+import com.maestros.bottlehoz.activities.ManageAddressActivity;
 import com.maestros.bottlehoz.activities.RecommendedActivity;
 import com.maestros.bottlehoz.activities.ShowAllCategoryActivity;
 import com.maestros.bottlehoz.adapter.CategoryHome;
@@ -38,14 +39,10 @@ import com.maestros.bottlehoz.adapter.MoreAdapter;
 import com.maestros.bottlehoz.adapter.PopularAdapter;
 import com.maestros.bottlehoz.adapter.PremiumAdapter;
 import com.maestros.bottlehoz.adapter.RecommendedHomeAdapter;
-import com.maestros.bottlehoz.adapter.RecommentAdapter;
 import com.maestros.bottlehoz.adapter.SliderAdapterExample;
 import com.maestros.bottlehoz.databinding.FragmentHomeBinding;
-import com.maestros.bottlehoz.model.DiscountPercentModel;
 import com.maestros.bottlehoz.model.ListingModel;
-import com.maestros.bottlehoz.model.MoreModel;
 import com.maestros.bottlehoz.model.PopularModel;
-import com.maestros.bottlehoz.model.PremiumModel;
 import com.maestros.bottlehoz.model.RecommendedHomeModel;
 import com.maestros.bottlehoz.model.SliderModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
@@ -62,7 +59,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.maestros.bottlehoz.retrofit.BaseUrl.BASEURL;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BANNER;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_BRAND;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_CATEGORY;
@@ -117,11 +113,25 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
         binding.rvDiscount.setLayoutManager(mLayoutManager);
 
-
         binding.txtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), RecommendedActivity.class));
+            }
+        });
+
+
+        binding.txLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, ManageAddressActivity.class));
+            }
+        });
+
+        binding.imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CartActivity.class));
             }
         });
 
