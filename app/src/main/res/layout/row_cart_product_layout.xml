@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textColor="#fd0000"
             android:layout_marginLeft="10dp"
-            android:buttonTint="@color/grey"
+            android:buttonTint="@color/md_green_600"
             android:button="@drawable/checkboxstylesquare"
             />
 
@@ -79,7 +79,7 @@
 
                 <TextView
                     android:id="@+id/txtMedium"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="Premium"

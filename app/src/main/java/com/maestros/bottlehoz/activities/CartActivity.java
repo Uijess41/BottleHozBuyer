@@ -16,17 +16,13 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.Gson;
 
 import com.maestros.bottlehoz.R;
-import com.maestros.bottlehoz.adapter.CartProductAdapter;
 import com.maestros.bottlehoz.adapter.CartTittleAdapter;
-import com.maestros.bottlehoz.databinding.ActivityAddAddressBinding;
 import com.maestros.bottlehoz.databinding.ActivityCartBinding;
-import com.maestros.bottlehoz.model.CartTittleModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
 import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
 import com.maestros.bottlehoz.utils.SharedHelper;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,15 +30,16 @@ import java.util.ArrayList;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_CART;
 
 interface CartActivityInterface {
-    void draw(String id, int position);
+    void draw(String id , int position);
+    void listItem(ArrayList<String>allItemList , int position);
 }
 
 public class CartActivity extends AppCompatActivity implements CartActivityInterface {
     ActivityCartBinding binding;
     View view;
     RecyclerView.LayoutManager layoutManagerTittle;
-    ArrayList<String> ArraddCartList = new ArrayList<>();
-
+   public static ArrayList<String> myLocalCartList = new ArrayList<>();
+    public  static int CountAll=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +88,7 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
                 .build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.e("CartActivity", "onResponse: " + response);
+              //  Log.e("CartActivity", "onResponse: " + response);
                 dialog.hideDialog();
                 try {
                     if (response.getBoolean("result") == true) {
@@ -100,7 +97,20 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
                         CartData cartData = gson.fromJson(response.toString(), CartData.class);
                         ArrayList arrayList = new ArrayList<CartData.Data>();
                         if (!cartData.getData().isEmpty()) {
+                            myLocalCartList.clear();
                             arrayList.addAll(cartData.getData());
+                            for (int i = 0; i <cartData.getData().size() ; i++) {
+                                for (int j = 0; j <cartData.getData().get(i).getSellers_info().getProducts().size() ; j++) {
+                                    myLocalCartList.add("0");
+
+                                }
+                            }
+                            Log.e("CartActivity", "onResponse: " +myLocalCartList);
+                           /* for (int j = 0; j <cartData.getData().size() ; j++) {
+                                ArraddCartList.add("0");
+                                Log.e("CartActivity", "show_cart: " +ArraddCartList);
+                            }*/
+
                         } else {
                             Toast.makeText(CartActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                         }
@@ -135,10 +145,13 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
     }*/
 
     @Override
-    public void draw(String id, int position) {
-        Log.e("size", "draw: " + ArraddCartList);
-        ArraddCartList.set(position, id);
-        Log.e("CartActivity", "draw: " + ArraddCartList);
-        Log.e("CartActivity", "draw: " + id + position);
+    public void draw(String id,int position) {
+        myLocalCartList.set(position, id);
+        Log.e("CartActivity", "draw: " + myLocalCartList);
+    }
+
+    @Override
+    public void listItem(ArrayList<String> allItemList, int position) {
+        Log.e("CartActivity", "listItem: " +allItemList);
     }
 }

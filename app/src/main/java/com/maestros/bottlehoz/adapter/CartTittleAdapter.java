@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -63,15 +64,15 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         CartData.Data modelObject = catTittleList.get(position);
-        holder.rowCartOneLayoutBinding.checkitem.setText(modelObject.getSellers_info().getName());
+        holder.rowCartOneLayoutBinding.checkitemAll.setText(modelObject.getSellers_info().getName());
 
         Integer i = new Integer(modelObject.getDelivery_charge());
-        StringBuilder sb_deliverCharge= new StringBuilder(); // or StringBuffer
+        StringBuilder sb_deliverCharge = new StringBuilder(); // or StringBuffer
         sb_deliverCharge.append(i);
         holder.rowCartOneLayoutBinding.tvDelFee.setText(sb_deliverCharge);
 
         Integer j = new Integer(modelObject.getGrand_total());
-        StringBuilder sb_grandTotal= new StringBuilder(); // or StringBuffer
+        StringBuilder sb_grandTotal = new StringBuilder(); // or StringBuffer
         sb_grandTotal.append(j);
         holder.rowCartOneLayoutBinding.tvAmount.setText(sb_grandTotal);
 
@@ -84,13 +85,37 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         }
 */
 
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int k = 0; k < modelObject.getSellers_info().getProducts().size(); k++) {
+            arrayList.add(modelObject.getSellers_info().getProducts().get(k).getCartID());
+        }
+
+
+
+        holder.rowCartOneLayoutBinding.checkitemAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    if (mContext instanceof CartActivity) {
+                        ((CartActivity) mContext).listItem(arrayList, position);
+                    }
+
+                }else {
+
+                }
+
+            }
+        });
+
+
         layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
         holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
 
-        CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext,modelObject.getSellers_info().getProducts());
+        CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts());
         holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
-
 
 
     }
@@ -111,48 +136,5 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
     }
 
 
-    public void showCartProduct(String userID, MyViewHolder holder){
-
-        AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control", SHOW_CART)
-                .addBodyParameter("userID", userID)
-                .setPriority(Priority.HIGH)
-                .build().getAsJSONObject(new JSONObjectRequestListener() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.e("CartActivity", "onResponse: " + response);
-                cartProductModelList=new ArrayList<>();
-                try {
-                    if (response.getBoolean("result") == true) {
-
-                        Gson gson = new Gson();
-                        CartData cartData = gson.fromJson(response.toString(), CartData.class);
-                        ArrayList arrayList = new ArrayList<CartData.Data>();
-                        if (!cartData.getData().isEmpty()) {
-                            arrayList.addAll(cartData.getData());
-                        } else {
-                            Toast.makeText(mContext, response.getString("message"), Toast.LENGTH_SHORT).show();
-                        }
-
-
-
-
-                    }
-                } catch (Exception e) {
-
-                    Log.e("CartAdapter", "onResponse: " +e.getMessage());
-                }
-
-
-            }
-
-
-            @Override
-            public void onError(ANError anError) {
-
-                Log.e("CartAdapter", "onError: " + anError.getMessage());
-            }
-        });
-    }
 
 }

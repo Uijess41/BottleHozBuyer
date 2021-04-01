@@ -23,12 +23,12 @@
 
 
                 <CheckBox
-                    android:id="@+id/checkitem"
+                    android:id="@+id/checkitemAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sexy Dimples Drinks"
                     android:layout_marginLeft="10dp"
-                    android:buttonTint="@color/grey"
+                    android:buttonTint="@color/md_green_600"
                     android:paddingLeft="10dp"
                     android:textColor="@color/greyNew"
                     android:textSize="16sp"
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sexy Dimples Drinks "
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/checkitem"
+                    android:layout_toRightOf="@+id/checkitemAll"
                     android:visibility="gone" />
 
 
