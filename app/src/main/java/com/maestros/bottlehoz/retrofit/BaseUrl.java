@@ -19,5 +19,6 @@ public class BaseUrl {
     public static final String SHOW_FILTER_PRODUCT="show_proudct_by_cat";
     public static final String SHOW_SIMILAR_PRODUCT="show_proudct_simillar";
     public static final String SHOW_PRODUCT_DETAILS="product_detailss";
+    public static final String SHOW_CART="show_cart";
 
 }

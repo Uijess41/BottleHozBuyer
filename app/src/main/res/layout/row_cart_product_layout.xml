@@ -12,7 +12,7 @@
 
 
         <CheckBox
-            android:id="@+id/cCategory"
+            android:id="@+id/checkCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fd0000"
@@ -25,7 +25,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="80dp"
-            android:layout_toRightOf="@+id/cCategory"
+            android:layout_toRightOf="@+id/checkCategory"
             android:id="@+id/card"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
@@ -94,6 +94,7 @@
                     android:layout_below="@+id/txtName"
                     android:layout_marginLeft="5dp"
                     android:text="-"
+                    android:visibility="gone"
                     android:textColor="@color/greyNew" />
                 <TextView
                     android:id="@+id/txtSym"
@@ -103,6 +104,7 @@
                     android:layout_below="@+id/txtName"
                     android:layout_marginLeft="5dp"
                     android:text="₦"
+                    android:visibility="gone"
                     android:textColor="@color/greyNew" />
                 <TextView
                     android:id="@+id/txtPrOld"
@@ -112,6 +114,7 @@
                     android:layout_below="@+id/txtName"
                     android:layout_marginLeft="5dp"
                     android:text="8000"
+                    android:visibility="gone"
                     android:textColor="@color/greyNew" />
             </RelativeLayout>
 

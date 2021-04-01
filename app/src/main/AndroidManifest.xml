@@ -15,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottleHoz"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.CartActivity"></activity>
         <activity android:name=".activities.ChooseLocationActivity" />
         <activity
@@ -71,9 +78,7 @@
         <activity
             android:name=".activities.BottomNavActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
         <activity
             android:name=".activities.MyAccountActivity"
             android:configChanges="orientation|screenSize"
@@ -121,13 +126,8 @@
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

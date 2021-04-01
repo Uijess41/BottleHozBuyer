@@ -103,4 +103,6 @@
     <string name="saved_address">Saved Address</string>
     <string name="edit">Edit</string>
     <string name="my_cart">My Cart</string>
+    <string name="please_check_your_internet_connection">Please check your internet connection</string>
+    <string name="already_added">Already Added</string>
 </resources>

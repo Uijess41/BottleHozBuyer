@@ -102,6 +102,16 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 if (!data.equals("")) {
                                     JSONObject object = new JSONObject(data);
                                     String images = object.getString("images");
+                                    String cart_status = object.getString("cart_status");
+
+                                    if (cart_status.equals(false)){
+                                        binding.btnAdd.setVisibility(View.VISIBLE);
+                                    }
+                                    else {
+                                        binding.btnAdd.setVisibility(View.GONE);
+                                        binding.btnAlready.setVisibility(View.VISIBLE);
+
+                                    }
                                     String stock = object.getString("stock");
                                     JSONArray jsonArray = new JSONArray(images);
                                     if (jsonArray.length() != 0) {
@@ -152,6 +162,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                                                                     Intent plusActivity = new Intent(ProductDetailActivity.this, ProductDetailActivity.class);
                                                                     startActivity(plusActivity);
+                                                                    finish();
 
 
                                                                 }

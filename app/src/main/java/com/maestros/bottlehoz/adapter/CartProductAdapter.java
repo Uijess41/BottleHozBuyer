@@ -2,16 +2,21 @@ package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import com.maestros.bottlehoz.R;
+import com.maestros.bottlehoz.activities.CartActivity;
+import com.maestros.bottlehoz.activities.CartData;
 import com.maestros.bottlehoz.activities.ShowCatWiseProductActivity;
 import com.maestros.bottlehoz.databinding.RowCartProductLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowCatproductLayoutBinding;
@@ -24,10 +29,10 @@ import java.util.List;
 public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.MyViewHolder> {
 
 
-     Context mContext;
-      List<CartProductModel> catProductList;
+    Context mContext;
+    List<CartData.Data.SellersInfo.Product> catProductList;
 
-    public CartProductAdapter(Context mContext, List<CartProductModel> catProductList) {
+    public CartProductAdapter(Context mContext, List<CartData.Data.SellersInfo.Product> catProductList) {
         this.mContext = mContext;
         this.catProductList = catProductList;
     }
@@ -40,14 +45,43 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        CartProductModel modelObject = catProductList.get(position);
-        holder.rowCartProductLayoutBinding.txtPName.setText(modelObject.getName());
-        holder.rowCartProductLayoutBinding.txtMedium.setText(modelObject.getDescription());
-        holder.rowCartProductLayoutBinding.txtPrice.setText(modelObject.getPrice());
-  /*  holder.rowCartProductLayoutBinding.tvDelFee.setText(modelObject.getDeliveryFee());
-     holder.rowCartProductLayoutBinding.tvAmount.setText(modelObject.getCartAmount());*/
-        holder.rowCartProductLayoutBinding.imgPremium.setImageResource(modelObject.getImage());
+        CartData.Data.SellersInfo.Product modelObject = catProductList.get(position);
+        holder.rowCartProductLayoutBinding.txtPName.setText(modelObject.getProduct_info().getName());
+        holder.rowCartProductLayoutBinding.txtMedium.setText(modelObject.getProduct_info().getDescription());
+        holder.rowCartProductLayoutBinding.txtPrice.setText(modelObject.getProduct_info().getPrice());
 
+
+        for (int i = 0; i < modelObject.getProduct_info().getImages().size(); i++) {
+
+            Log.e("CartProductAdapter", "onBindViewHolder: " + modelObject.getProduct_info().getImages().size());
+
+            try {
+                Glide.with(mContext).load(modelObject.getProduct_info().getImages().get(i).getPath() + modelObject.getProduct_info().getImages().get(i).getImage())
+                        .placeholder(R.drawable.imageb).override(250, 250)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(holder.rowCartProductLayoutBinding.imgPremium);
+            } catch (Exception e) {
+
+            }
+
+        }
+
+
+        holder.rowCartProductLayoutBinding.checkCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (holder.rowCartProductLayoutBinding.checkCategory.isChecked()) {
+                    if (mContext instanceof CartActivity) {
+                        //  ((CartActivity)mContext).draw(modelObject.getiD(),position);
+                    }
+                } else {
+                    if (mContext instanceof CartActivity) {
+                        ((CartActivity) mContext).draw("0", position);
+                    }
+                }
+
+            }
+        });
 
     }
 

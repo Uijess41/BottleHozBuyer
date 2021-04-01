@@ -1,7 +1,21 @@
 package com.maestros.bottlehoz.model;
 
 public class CartProductModel {
-    String name,description,price,deliveryFee,cartAmount;
+    String name;
+    String description;
+    String price;
+    String deliveryFee;
+    String cartAmount;
+
+    public String getiD() {
+        return iD;
+    }
+
+    public void setiD(String iD) {
+        this.iD = iD;
+    }
+
+    String iD;
     int image;
 
     public String getName() {
