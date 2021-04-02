@@ -20,5 +20,7 @@ public class BaseUrl {
     public static final String SHOW_SIMILAR_PRODUCT="show_proudct_simillar";
     public static final String SHOW_PRODUCT_DETAILS="product_detailss";
     public static final String SHOW_CART="show_cart";
+    public static final String DELETE_CART="delete_cart";
+    public static final String UPDATE_QUANTITY="update_cart";
 
 }

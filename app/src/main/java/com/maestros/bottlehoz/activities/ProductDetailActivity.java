@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -36,13 +37,14 @@ import es.dmoral.toasty.Toasty;
 
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_PRODUCT_DETAILS;
 import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_SIMILAR_PRODUCT;
+import static com.maestros.bottlehoz.retrofit.BaseUrl.UPDATE_QUANTITY;
 
 public class ProductDetailActivity extends AppCompatActivity {
     ActivityProductDetailBinding binding;
     private ProductDetailSimilarAdapter adapter;
     private List<ProductSimilarModel> similarList = new ArrayList<>();
     String stProductId = "", stSellerId = "", stUSER_Id = "", strProdQ = "";
-    String new_str = "";
+    String new_str = "",cartID="";
     int stock_count = 0;
 
     @Override
@@ -54,6 +56,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         stSellerId = SharedHelper.getKey(getApplicationContext(), AppConstats.SELLERID);
         stUSER_Id = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
         Log.e("ProductDetailActivity", "PRODUCTID: " + stProductId);
+        Log.e("ProductDetailActivity", "USER_ID: " + stUSER_Id);
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,10 +87,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void productDetails(String stProductId) {
 
-
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_PRODUCT_DETAILS)
                 .addBodyParameter("productID", stProductId)
+                .addBodyParameter("userID", stUSER_Id)
                 .setTag("SHOW PRODUCT DETAILS ")
                 .setPriority(Priority.HIGH)
                 .build()
@@ -102,40 +105,102 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 if (!data.equals("")) {
                                     JSONObject object = new JSONObject(data);
                                     String images = object.getString("images");
+                                    String productID = object.getString("productID");
                                     String cart_status = object.getString("cart_status");
+                                    String cart_details = object.getString("cart_details");
 
-                                    if (cart_status.equals(false)){
-                                        binding.btnAdd.setVisibility(View.VISIBLE);
-                                    }
-                                    else {
-                                        binding.btnAdd.setVisibility(View.GONE);
-                                        binding.btnAlready.setVisibility(View.VISIBLE);
 
-                                    }
+
+                                    Log.e("jkbhjhjhjj", "cart_status: " +cart_status);
+
+
                                     String stock = object.getString("stock");
-                                    JSONArray jsonArray = new JSONArray(images);
-                                    if (jsonArray.length() != 0) {
-                                        for (int i = 0; i < jsonArray.length(); i++) {
-                                            JSONObject object1 = jsonArray.getJSONObject(i);
+                                    if (!stock.equals("")) {
+                                        stock_count = Integer.parseInt(stock);
+                                    }
 
-                                            try {
-                                                Glide.with(ProductDetailActivity.this).load(object1.getString("path") + object1.getString("image"))
-                                                        .placeholder(R.drawable.dummy).override(250, 250)
-                                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                                        .into(binding.ivProduct);
-                                            } catch (Exception e) {
+                                    binding.ivplus.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(final View v) {
+
+
+                                            strProdQ = binding.txtCount.getText().toString();
+
+                                            new_str = String.valueOf(Integer.parseInt(strProdQ) + 1);
+
+                                            binding.txtCount.setText(new_str);
+
+                                            int qty = Integer.parseInt(new_str);
+
+                                            if (qty > stock_count) {
+
+                                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ProductDetailActivity.this);
+                                                alertDialogBuilder.setMessage("Can't purchase more than stock Please select under the stock ");
+                                                alertDialogBuilder.setPositiveButton("ok",
+                                                        new DialogInterface.OnClickListener() {
+
+                                                            @Override
+                                                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                                                Intent plusActivity = new Intent(ProductDetailActivity.this, ProductDetailActivity.class);
+                                                                startActivity(plusActivity);
+                                                                finish();
+
+
+                                                            }
+                                                        });
+
+                                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                                alertDialog.show();
+
+                                            } else {
+
+
+
+                                            }
+
+
+                                        }
+                                    });
+
+                                    binding.ivMinus.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            strProdQ = binding.txtCount.getText().toString();
+
+                                            new_str = String.valueOf(Integer.parseInt(strProdQ) - 1);
+
+                                            int xyz = Integer.parseInt(strProdQ) - 1;
+                                            if (xyz < 1) {
+
+                                                binding.txtCount.setText("1");
+
+                                            } else {
+
+                                                binding.txtCount.setText(new_str);
+
+
 
                                             }
                                         }
+                                    });
 
-                                        binding.txtName.setText(object.getString("name"));
-                                        binding.txtDescription.setText(object.getString("description"));
-                                        binding.txtPrice.setText("₦" + object.getString("price"));
+                                    if (cart_status.equals("false")){
+                                        binding.btnAdd.setVisibility(View.VISIBLE);
+                                        binding.btnAlready.setVisibility(View.GONE);
 
 
-                                        if (!stock.equals("")) {
-                                            stock_count = Integer.parseInt(stock);
-                                        }
+                                    }
+                                    else {
+
+                                        JSONObject object1 =new JSONObject(cart_details);
+                                        cartID=object1.getString("cartID");
+                                        String  quantity=object1.getString("quantity");
+                                        binding.txtCount.setText(quantity);
+
+                                        binding.btnAdd.setVisibility(View.GONE);
+                                        binding.btnAlready.setVisibility(View.VISIBLE);
 
                                         binding.ivplus.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -173,7 +238,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                                                 } else {
 
-                                                    // update_quantity(id_new, new_str);
+                                                    update_quantity(cartID,productID,new_str);
 
                                                 }
 
@@ -193,17 +258,43 @@ public class ProductDetailActivity extends AppCompatActivity {
                                                 int xyz = Integer.parseInt(strProdQ) - 1;
                                                 if (xyz < 1) {
 
-                                                    binding.txtCount.setText("1");
+                                                  //  binding.txtCount.setText("1");
 
                                                 } else {
 
                                                     binding.txtCount.setText(new_str);
 
-                                                    // update_quantity(id_new, new_str);
+                                                    update_quantity(cartID,productID,new_str);
 
                                                 }
                                             }
                                         });
+
+
+
+                                    }
+
+                                    JSONArray jsonArray = new JSONArray(images);
+                                    if (jsonArray.length() != 0) {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject object2 = jsonArray.getJSONObject(i);
+
+                                            try {
+                                                Glide.with(ProductDetailActivity.this).load(object2.getString("path") + object2.getString("image"))
+                                                        .placeholder(R.drawable.dummy).override(250, 250)
+                                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                        .into(binding.ivProduct);
+                                            } catch (Exception e) {
+
+                                            }
+                                        }
+
+                                        binding.txtName.setText(object.getString("name"));
+                                        binding.txtDescription.setText(object.getString("description"));
+                                        binding.txtPrice.setText("₦" + object.getString("price"));
+
+
+
 
 
                                     }
@@ -213,7 +304,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                             }
                         } catch (JSONException e) {
-                            Log.e("ProductDetailActivity", "e: " + e);
+                            Log.e("gjvjjjj", "e: " + e.getMessage());
 
                         }
 
@@ -221,7 +312,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.e("ProductDetailActivity", "anError: " + anError);
+                        Log.e("gjvjjjj", "anError: " + anError.getMessage());
 
                     }
                 });
@@ -283,6 +374,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     }
 
+
+
+
     private void addToCart(String strQuantity) {
 
         AndroidNetworking.post(BaseUrl.BASEURL)
@@ -302,6 +396,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                         try {
                             if (response.getBoolean("result") == true) {
 
+                                binding.btnAdd.setVisibility(View.GONE);
+                                binding.btnAlready.setVisibility(View.VISIBLE);
                                 Toasty.success(ProductDetailActivity.this, response.getString("message"), Toasty.LENGTH_SHORT).show();
                             } else {
 
@@ -317,6 +413,50 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     }
                 });
+
+
+    }
+
+
+
+
+
+    public void update_quantity(String cartId, String showProductId, String new_str){
+
+        String strUserId=SharedHelper.getKey(this,AppConstats.USER_ID);
+        Log.e("fkdkg", new_str);
+        Log.e("fkdkg",strUserId);
+        Log.e("fkdkg",showProductId);
+        Log.e("fkdkg",cartId);
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control",UPDATE_QUANTITY)
+                .addBodyParameter("cartID",cartId)
+                .addBodyParameter("productID",showProductId)
+                .addBodyParameter("quantity",new_str)
+                .addBodyParameter("userID",strUserId)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("regtdfrh",response.toString());
+                        try {
+                            if (response.getString("result").equals("true")){
+
+                            }
+                        } catch (JSONException e) {
+                            Log.e("tyhth",e.getMessage());
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.e("ukuihj",anError.getMessage());
+                    }
+                });
+
+
 
 
     }

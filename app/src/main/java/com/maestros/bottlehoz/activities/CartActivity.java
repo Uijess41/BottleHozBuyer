@@ -79,8 +79,6 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
             }
 
         }*/
-
-
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_CART)
                 .addBodyParameter("userID", stUserId)
@@ -88,7 +86,7 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
                 .build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {
-              //  Log.e("CartActivity", "onResponse: " + response);
+               Log.e("CartActivity", "onResponse: " + response);
                 dialog.hideDialog();
                 try {
                     if (response.getBoolean("result") == true) {
@@ -106,18 +104,19 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
                                 }
                             }
                             Log.e("CartActivity", "onResponse: " +myLocalCartList);
-                           /* for (int j = 0; j <cartData.getData().size() ; j++) {
-                                ArraddCartList.add("0");
-                                Log.e("CartActivity", "show_cart: " +ArraddCartList);
-                            }*/
 
-                        } else {
-                            Toast.makeText(CartActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                         }
 
                         CartTittleAdapter cartTittleAdapter = new CartTittleAdapter(CartActivity.this, arrayList);
                         binding.rvCart.setAdapter(cartTittleAdapter);
 
+                    }
+                    else {
+                        binding.lotiAnimation.setVisibility(View.VISIBLE);
+                        binding.txEmpty.setVisibility(View.VISIBLE);
+                        binding.rlNoData.setVisibility(View.VISIBLE);
+                      //  Toast.makeText(CartActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                         binding.rlBottom.setVisibility(View.GONE);
                     }
                 } catch (Exception e) {
                     dialog.hideDialog();

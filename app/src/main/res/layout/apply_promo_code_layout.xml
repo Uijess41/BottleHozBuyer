@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/md_green"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgCode"
+            android:layout_width="100dp"
+            android:layout_centerInParent="true"
+            android:layout_height="60dp"
+            android:src="@drawable/promo"
+            />
+
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apply_promo_code"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imgCode"
+            android:textColor="@color/greyNew"
+            android:textSize="16sp"
+            android:fontFamily="@font/sfprodisplay_semibold" />
+        <TextView
+            android:id="@+id/txtMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A promo code is a combination of \n letters and numbers without spaces. "
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/txt"
+            android:textColor="@color/greyNew"
+            android:textSize="16sp"
+            android:fontFamily="@font/sfprodisplay_semibold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlnew"
+        android:layout_width="300dp"
+        android:layout_marginTop="25dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/rl"
+        android:background="@drawable/greynewstroke"
+        android:layout_height="45dp">
+
+
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:singleLine="true"
+            android:paddingLeft="10dp"
+            android:maxLength="35"
+            android:textColor="@color/black"
+            android:hint="@string/enter_code_here"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+       android:gravity="center"
+        android:layout_below="@+id/rlnew"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="120dp"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/greennew_round"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/txCancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/greyNew"
+                android:textSize="16sp"
+                android:fontFamily="@font/sfprodisplay_semibold" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/greennew_round"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/txApply"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/apply"
+                android:textColor="@color/greyNew"
+                android:textSize="16sp"
+                android:fontFamily="@font/sfprodisplay_semibold" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

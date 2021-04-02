@@ -44,7 +44,7 @@
                 />
         </com.google.android.material.card.MaterialCardView>
         <ImageView
-            android:id="@+id/ivMenu"
+            android:id="@+id/ivDelete"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="5dp"
