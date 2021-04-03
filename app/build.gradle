@@ -82,4 +82,15 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.5.0'
     ///dexter
     implementation 'com.karumi:dexter:6.0.1'
+
+    ///ripple
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
+    //map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    ///manually type map address
+    implementation 'com.google.android.libraries.places:places:2.4.0'
 }

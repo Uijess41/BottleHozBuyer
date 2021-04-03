@@ -12,6 +12,8 @@ import android.view.View;
 import com.maestros.bottlehoz.adapter.ManageAddressAdapter;
 import com.maestros.bottlehoz.databinding.ActivityManageAddressBinding;
 import com.maestros.bottlehoz.model.ManageAddressModel;
+import com.maestros.bottlehoz.utils.AppConstats;
+import com.maestros.bottlehoz.utils.SharedHelper;
 
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ ArrayList<ManageAddressModel>addressModelArrayList=new ArrayList<>();
        binding.txtAddress.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+               SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTADDRESS, "");
                startActivity(new Intent(ManageAddressActivity.this, AddAddressActivity.class));
            }
        });

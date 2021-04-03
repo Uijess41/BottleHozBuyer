@@ -16,6 +16,10 @@ public class AppConstats {
     public static final String USER_TYPE = "USER_TYPE";
     public static final String USER_PASSWORD = "USER_PASSWORD";
     public static final String USER_MOBILE = "USER_MOBILE";
+    public static final String SELECTADDRESS = "SELECTADDRESS";
+    public static final String SELECTLAT = "SELECTLAT";
+    public static final String SELECTLONG = "SELECTLONG";
+    public static final String SELECTCITY = "SELECTCITY";
 
 
 }
