@@ -113,5 +113,6 @@
 <!--   <string name="api_key">AIzaSyDB-DSxcKUzV8bNwFlAafIgGvXRAj1X0CU</string>-->
    <!-- <string name="api_key">AIzaSyCuG870vhPFpBPVy50_iYdQNWtCmuxH-xo</string>-->
     <string name="api_key">AIzaSyBJDITUc81Fks2JG3ql6T9gzM1499Pq6Eo</string>
+    <string name="address">Address</string>
 
 </resources>

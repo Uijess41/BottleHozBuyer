@@ -3,6 +3,7 @@ package com.maestros.bottlehoz.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -52,7 +53,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     ImageView centerImage;
      TextView txtAddress,txtCity;
      Button btnChange,btnNext;
-    String st_Lat="",st_Long="",st_address="",st_City="";
+     String st_Lat="",st_Long="",st_address="",st_City="";
+     public static final String ADDRESS="ADDRESS";
+     public static final String LAT="LAT";
+     public static final String LNG="LNG";
+
+
     RippleBackground rippleBackground;
     private static final int AUTOCOMPLETE_REQUEST_CODE_SEARCH = 1111;
     @Override
@@ -69,6 +75,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
+
+
         //rippleBackground.stopRippleAnimation();
         gpsTracker = new GPSTracker(this);
 
@@ -155,22 +163,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 txtAddress.setText(address);
 
 
-
-
-
-
-              btnNext.setOnClickListener(new View.OnClickListener() {
+                btnNext.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTADDRESS, address);
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTCITY, city);
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLAT, select_lat);
-                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLONG, select_long);
+
+                        Intent intent = new Intent();
+                        intent.putExtra(ADDRESS,address);
+                        intent.putExtra(LAT, select_lat);
+                        intent.putExtra(LNG, select_long);
+                        setResult(Activity.RESULT_OK, intent);
                         finish();
-                        startActivity(new Intent(MapActivity.this, AddAddressActivity.class));
 
                     }
                 });
+
+
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -239,12 +247,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 btnNext.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTADDRESS, st_address);
+                                        /*SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTADDRESS, st_address);
                                         SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTCITY, st_City);
                                         SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLAT, st_Lat);
-                                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLONG, st_Long);
+                                        SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLONG, st_Long);*/
+
+                                        Intent intent = new Intent();
+                                        intent.putExtra(ADDRESS,st_address);
+                                        intent.putExtra(LAT, st_Lat);
+                                        intent.putExtra(LNG, st_Long);
+                                        setResult(Activity.RESULT_OK, intent);
                                         finish();
-                                        startActivity(new Intent(MapActivity.this, AddAddressActivity.class));
 
                                     }
                                 });

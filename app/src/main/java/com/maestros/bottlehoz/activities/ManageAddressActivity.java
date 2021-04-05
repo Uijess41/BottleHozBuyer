@@ -41,6 +41,8 @@ ArrayList<ManageAddressModel>addressModelArrayList=new ArrayList<>();
            @Override
            public void onClick(View v) {
                SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTADDRESS, "");
+               SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLONG, "");
+               SharedHelper.putKey(getApplicationContext(), AppConstats.SELECTLAT, "");
                startActivity(new Intent(ManageAddressActivity.this, AddAddressActivity.class));
            }
        });

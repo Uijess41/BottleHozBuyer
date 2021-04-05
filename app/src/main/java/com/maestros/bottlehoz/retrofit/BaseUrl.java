@@ -22,5 +22,8 @@ public class BaseUrl {
     public static final String SHOW_CART="show_cart";
     public static final String DELETE_CART="delete_cart";
     public static final String UPDATE_QUANTITY="update_cart";
+    public static final String SHOW_STATE="show_state";
+    public static final String SHOW_CITY="show_city";
+    public static final String ADD_ADDRESS="add_address";
 
 }
