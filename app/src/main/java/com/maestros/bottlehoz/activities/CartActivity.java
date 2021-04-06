@@ -32,13 +32,17 @@ import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_CART;
 interface CartActivityInterface {
     void draw(String id , int position);
     void listItem(ArrayList<String>allItemList , int position);
+    void resetData(String s);
+    ArrayList arrayListSec = new ArrayList<CartData.Data>();
 }
 
-public class CartActivity extends AppCompatActivity implements CartActivityInterface {
+public class CartActivity extends AppCompatActivity implements CartActivityInterface,CheckInterface {
     ActivityCartBinding binding;
     View view;
     RecyclerView.LayoutManager layoutManagerTittle;
    public static ArrayList<String> myLocalCartList = new ArrayList<>();
+
+   ArrayList<Boolean> booleans = new ArrayList<>();
     public  static int CountAll=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,17 +72,6 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
         Log.e("CartActivity", "onCreate: " + stUserId);
         CustomDialog dialog = new CustomDialog();
         dialog.showDialog(R.layout.progress_layout, this);
-
-       /* CartTittleModel model=new CartTittleModel("Sexy Dimples Drinks");
-
-        for (int i = 0; i < 2; i++) {
-            cartTittleList.add(model);
-            for (int j = 0; j <3 ; j++) {
-                ArraddCartList.add("0");
-                Log.e("CartActivity", "show_cart: " +ArraddCartList);
-            }
-
-        }*/
         AndroidNetworking.post(BaseUrl.BASEURL)
                 .addBodyParameter("control", SHOW_CART)
                 .addBodyParameter("userID", stUserId)
@@ -97,17 +90,18 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
                         if (!cartData.getData().isEmpty()) {
                             myLocalCartList.clear();
                             arrayList.addAll(cartData.getData());
+                            arrayListSec.addAll(cartData.getData());
                             for (int i = 0; i <cartData.getData().size() ; i++) {
                                 for (int j = 0; j <cartData.getData().get(i).getSellers_info().getProducts().size() ; j++) {
                                     myLocalCartList.add("0");
-
+                                    booleans.add(false);
                                 }
                             }
                             Log.e("CartActivity", "onResponse: " +myLocalCartList);
 
                         }
 
-                        CartTittleAdapter cartTittleAdapter = new CartTittleAdapter(CartActivity.this, arrayList);
+                        CartTittleAdapter cartTittleAdapter = new CartTittleAdapter(CartActivity.this, arrayList,booleans,CartActivity.this::checkData );
                         binding.rvCart.setAdapter(cartTittleAdapter);
 
                     }
@@ -135,14 +129,6 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
         });
     }
 
-   /* public void test(){
-        for (int i = 0; i <2 ; i++) {
-            for (int j = 0; j < 3; j++) {
-                Log.e("CartActivity", "test: " +j);
-            }
-        }
-    }*/
-
     @Override
     public void draw(String id,int position) {
         myLocalCartList.set(position, id);
@@ -152,5 +138,26 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
     @Override
     public void listItem(ArrayList<String> allItemList, int position) {
         Log.e("CartActivity", "listItem: " +allItemList);
+    } @Override
+    public void resetData(String s) {
+
+    }
+
+    @Override
+    public void checkData(String s,Boolean aBoolean,int pos) {
+        Log.e("CartActivity", "listItem: " +s);
+        if (s =="a"){
+            booleans.set(pos,aBoolean);
+            Log.e("CartActivity", "sdffsfd: " +booleans);
+        }else  {
+            booleans.set(pos,aBoolean);
+            CartTittleAdapter cartTittleAdapter = new CartTittleAdapter(CartActivity.this, arrayListSec,booleans,CartActivity.this::checkData );
+            binding.rvCart.setAdapter(cartTittleAdapter);
+            Log.e("CartActivity", "checkData: " +booleans);
+        }
+
+
     }
 }
+
+

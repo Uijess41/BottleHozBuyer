@@ -1,8 +1,6 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,32 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.gson.Gson;
-
-import com.maestros.bottlehoz.R;
-import com.maestros.bottlehoz.activities.CartActivity;
 import com.maestros.bottlehoz.activities.CartData;
-import com.maestros.bottlehoz.activities.ShowCatWiseProductActivity;
+import com.maestros.bottlehoz.activities.CheckInterface;
 import com.maestros.bottlehoz.databinding.RowCartOneLayoutBinding;
-import com.maestros.bottlehoz.databinding.RowCatproductLayoutBinding;
-import com.maestros.bottlehoz.model.CartProductModel;
-import com.maestros.bottlehoz.model.CartTittleModel;
-import com.maestros.bottlehoz.retrofit.BaseUrl;
-import com.maestros.bottlehoz.utils.AppConstats;
-import com.maestros.bottlehoz.utils.SharedHelper;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.maestros.bottlehoz.retrofit.BaseUrl.SHOW_CART;
 
 public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.MyViewHolder> {
 
@@ -46,12 +24,16 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
     Context mContext;
     List<CartData.Data> catTittleList;
     List<CartData.Data> cartProductModelList;
+    List<Boolean> booleans;
 
     LinearLayoutManager layoutManagerProduct;
+    CheckInterface checkInterface;
 
-    public CartTittleAdapter(Context mContext, List<CartData.Data> catTittleList) {
+    public CartTittleAdapter(Context mContext, List<CartData.Data> catTittleList,ArrayList<Boolean>booleans , CheckInterface checkInterface) {
         this.mContext = mContext;
         this.catTittleList = catTittleList;
+        this.checkInterface = checkInterface;
+        this.booleans = booleans;
     }
 
     @NonNull
@@ -65,7 +47,6 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
 
         CartData.Data modelObject = catTittleList.get(position);
         holder.rowCartOneLayoutBinding.checkitemAll.setText(modelObject.getSellers_info().getName());
-
         Integer i = new Integer(modelObject.getDelivery_charge());
         StringBuilder sb_deliverCharge = new StringBuilder(); // or StringBuffer
         sb_deliverCharge.append(i);
@@ -75,6 +56,7 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         StringBuilder sb_grandTotal = new StringBuilder(); // or StringBuffer
         sb_grandTotal.append(j);
         holder.rowCartOneLayoutBinding.tvAmount.setText(sb_grandTotal);
+
 
 
         /*  ArrayList<CartProductModel> cartProductModelList=new ArrayList<>();
@@ -91,30 +73,34 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         }
 
 
-
+        holder.rowCartOneLayoutBinding.checkitemAll.setChecked(booleans.get(position));
         holder.rowCartOneLayoutBinding.checkitemAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
+                 checkInterface.checkData("a",true,position);
+                    layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
+                    CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts(), true, checkInterface);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
 
-                    if (mContext instanceof CartActivity) {
-                        ((CartActivity) mContext).listItem(arrayList, position);
-                    }
-
-                }else {
-
+                } else {
+               checkInterface.checkData("a",false,position);
+                    layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
+                    CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts(), false, checkInterface);
+                    holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
                 }
 
             }
         });
-
-
         layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
         holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
-
-        CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts());
+        CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts(), false, checkInterface);
         holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
 
 
@@ -134,7 +120,6 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         }
 
     }
-
 
 
 }

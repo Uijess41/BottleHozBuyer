@@ -14,6 +14,7 @@ data class CartData(
             val userID: String,
             val type: String,
             val name: String,
+            val myCheck: Boolean,
             val address: String,
             val latitude: String,
             val longitude: String,
