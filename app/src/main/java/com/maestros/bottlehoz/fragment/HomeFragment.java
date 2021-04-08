@@ -46,8 +46,10 @@ import com.maestros.bottlehoz.model.PopularModel;
 import com.maestros.bottlehoz.model.RecommendedHomeModel;
 import com.maestros.bottlehoz.model.SliderModel;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
+import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.Connectivity;
 import com.maestros.bottlehoz.utils.ProgressBarCustom.CustomDialog;
+import com.maestros.bottlehoz.utils.SharedHelper;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -75,7 +77,7 @@ public class HomeFragment extends Fragment {
 
     SliderAdapterExample sliderAdapter;
     List<SliderModel> listOfSlider = new ArrayList<>();
-
+    String stAddress="";
 
     List<PopularModel> popularList = new ArrayList<>();
 
@@ -108,6 +110,13 @@ public class HomeFragment extends Fragment {
 
         view = binding.getRoot();
         context = getActivity();
+
+       stAddress=  SharedHelper.getKey(getActivity(), AppConstats.SELECTADDRESS);
+
+       if (!stAddress.isEmpty()){
+           binding.txLocation.setText(stAddress);
+       }
+
 
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);

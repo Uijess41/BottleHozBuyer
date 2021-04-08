@@ -7,6 +7,16 @@ public class ManageAddressModel {
     String address;
     String type;
 
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
+
+    String addressId;
+
     public String getName() {
         return name;
     }
@@ -31,9 +41,5 @@ public class ManageAddressModel {
         this.type = type;
     }
 
-    public ManageAddressModel(String name, String address, String type) {
-        this.name = name;
-        this.address = address;
-        this.type = type;
-    }
+
 }

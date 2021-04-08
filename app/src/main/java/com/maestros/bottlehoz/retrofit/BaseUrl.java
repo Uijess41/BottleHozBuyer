@@ -25,5 +25,7 @@ public class BaseUrl {
     public static final String SHOW_STATE="show_state";
     public static final String SHOW_CITY="show_city";
     public static final String ADD_ADDRESS="add_address";
+    public static final String SHOW_ADDRESS="show_address";
+    public static final String DELETE_ADDRESS="delete_address";
 
 }
