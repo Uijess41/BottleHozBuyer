@@ -183,7 +183,7 @@ public class HomeFragment extends Fragment {
         onBack(view);
         Connectivity connectivity = new Connectivity(getActivity());
         if (connectivity.isOnline()) {
-            //   getMoreData();
+              getMoreData();
             getDiscountData();
             getCategoryData();
             getPopularData();

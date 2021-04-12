@@ -39,26 +39,29 @@ public class MoreAdapter extends RecyclerView.Adapter<MoreAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         DataMoreLove.Data modelObject = moreList.get(position);
 
-        holder.rowMoreLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
-        holder.rowMoreLayoutBinding.txtName.setText(modelObject.getName());
-        holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getProduct_sold()+"Sold");
-        holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
+        if (!modelObject.equals("")){
+            holder.rowMoreLayoutBinding.txtPrice.setText("₦"+modelObject.getPrice());
+            holder.rowMoreLayoutBinding.txtName.setText(modelObject.getName());
+            holder.rowMoreLayoutBinding.txtCount.setText(modelObject.getProduct_sold()+"Sold");
+            holder.rowMoreLayoutBinding.txtCRate.setText(modelObject.getRating());
 
 
-        if (modelObject.getImages().size()==0){
+            if (modelObject.getImages().size()==0){
 
-        }else {
+            }else {
 
-            Log.e("MoreAdapter", "onBindViewHolder: " +modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage());
-            try {
-                Glide.with(mContext).load(modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage())
-                        .error(R.drawable.dummy).override(150, 150)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(holder.rowMoreLayoutBinding.imgPopular);
-            }catch (Exception e){
+                Log.e("MoreAdapter", "onBindViewHolder: " +modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage());
+                try {
+                    Glide.with(mContext).load(modelObject.getImages().get(0).getPath()+modelObject.getImages().get(0).getImage())
+                            .error(R.drawable.dummy).override(150, 150)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(holder.rowMoreLayoutBinding.imgPopular);
+                }catch (Exception e){
 
+                }
             }
         }
+
 
 
 
