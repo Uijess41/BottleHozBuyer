@@ -29,6 +29,7 @@ import com.maestros.bottlehoz.activities.DataDiscount;
 import com.maestros.bottlehoz.activities.DataImagePremium;
 import com.maestros.bottlehoz.activities.ManageAddressActivity;
 import com.maestros.bottlehoz.activities.RecommendedActivity;
+import com.maestros.bottlehoz.activities.SearchResultActivity;
 import com.maestros.bottlehoz.activities.ShowAllCategoryActivity;
 import com.maestros.bottlehoz.adapter.CategoryHome;
 import com.maestros.bottlehoz.adapter.CategorytAdapter;
@@ -126,6 +127,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), RecommendedActivity.class));
+            }
+        });
+        binding.cardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), SearchResultActivity.class));
             }
         });
 

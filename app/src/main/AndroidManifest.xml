@@ -21,10 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottleHoz"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Map.ManuallyMapActivity"
+        <activity android:name=".activities.SearchResultActivity"></activity>
+        <activity
+            android:name=".Map.ManuallyMapActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
-        <activity android:name=".activities.Splash"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".activities.Splash"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
@@ -32,11 +35,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activities.CartActivity"
+        <activity
+            android:name=".activities.CartActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".activities.ChooseLocationActivity" />
         <activity
             android:name=".activities.ManageAddressActivity"
@@ -88,7 +91,7 @@
         <activity
             android:name=".activities.BottomNavActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activities.MyAccountActivity"
             android:configChanges="orientation|screenSize"
@@ -100,9 +103,7 @@
         <activity
             android:name=".activities.MapActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
         <activity
             android:name=".activities.AddAddressActivity"
             android:configChanges="orientation|screenSize"
@@ -138,7 +139,7 @@
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

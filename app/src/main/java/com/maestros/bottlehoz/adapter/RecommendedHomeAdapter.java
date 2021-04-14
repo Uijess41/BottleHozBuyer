@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.maestros.bottlehoz.R;
@@ -17,10 +21,16 @@ import com.maestros.bottlehoz.databinding.RowRecommendLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowRecommendedHomeLayoutBinding;
 import com.maestros.bottlehoz.model.RecommendedHomeModel;
 import com.maestros.bottlehoz.model.RecommentModel;
+import com.maestros.bottlehoz.retrofit.BaseUrl;
 import com.maestros.bottlehoz.utils.AppConstats;
 import com.maestros.bottlehoz.utils.SharedHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class RecommendedHomeAdapter extends RecyclerView.Adapter<RecommendedHomeAdapter.MyViewHolder> {
 
@@ -67,6 +77,12 @@ public class RecommendedHomeAdapter extends RecyclerView.Adapter<RecommendedHome
             }
         });
 
+        holder.rowRecommendedHomeLayoutBinding.imgPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart (modelObject.getProductId(),modelObject.getSellerId());
+            }
+        });
 
     }
 
@@ -82,6 +98,44 @@ public class RecommendedHomeAdapter extends RecyclerView.Adapter<RecommendedHome
             super(rowRecommendedHomeLayoutBinding.getRoot());
             this.rowRecommendedHomeLayoutBinding = rowRecommendedHomeLayoutBinding;
         }
+
+    }
+    private void addToCart(String productID, String sellerID) {
+        String  stUSER_Id = SharedHelper.getKey(mContext, AppConstats.USER_ID);
+        AndroidNetworking.post(BaseUrl.BASEURL)
+                .addBodyParameter("control", "add_to_cart")
+                .addBodyParameter("productID", productID)
+                .addBodyParameter("userID", stUSER_Id)
+                .addBodyParameter("sellerID", sellerID)
+                .addBodyParameter("quantity", "1")
+                .setTag("ADD TO CART")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        try {
+                            if (response.getBoolean("result") == true) {
+
+
+                                Toasty.success(mContext, response.getString("message"), Toasty.LENGTH_SHORT).show();
+                            } else {
+
+                                Toasty.error(mContext, response.getString("message"), Toasty.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+
 
     }
 }

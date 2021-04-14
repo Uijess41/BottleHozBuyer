@@ -66,6 +66,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:id="@+id/cardSearch"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
@@ -88,7 +89,7 @@
                         android:src="@drawable/search" />
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/etSearch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

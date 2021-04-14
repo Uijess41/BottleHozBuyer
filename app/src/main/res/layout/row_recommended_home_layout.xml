@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/rlHeader"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:id="@+id/rlC"
@@ -24,30 +24,11 @@
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:id="@+id/rlHeader"
                 android:layout_marginLeft="90dp">
 
-                <ImageView
-                    android:id="@+id/imgPlus"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_toLeftOf="@+id/imgFav"
-                    android:background="?actionBarItemBackground"
-                    android:padding="8dp"
-                    android:src="@drawable/plus"
-                    android:visibility="visible" />
-
-
-                <ImageView
-                    android:id="@+id/imgFav"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
-                    android:background="?actionBarItemBackground"
-                    android:padding="8dp"
-                    android:src="@drawable/infav"
-                    android:visibility="visible" />
 
 
                 <TextView
@@ -117,6 +98,33 @@
 
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgPlus"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_toLeftOf="@+id/imgFav"
+                    android:background="?actionBarItemBackground"
+                    android:padding="8dp"
+                    android:src="@drawable/plus"
+                    android:visibility="visible" />
+
+
+                <ImageView
+                    android:id="@+id/imgFav"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:background="?actionBarItemBackground"
+                    android:padding="8dp"
+                    android:src="@drawable/infav"
+                    android:visibility="visible" />
+
+
+            </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
