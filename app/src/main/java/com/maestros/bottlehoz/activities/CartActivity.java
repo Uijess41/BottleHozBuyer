@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.denizsubasi.creditcardview.AddCreditCardActivity;
 import com.google.gson.Gson;
 
 import com.maestros.bottlehoz.R;
@@ -59,6 +61,13 @@ public class CartActivity extends AppCompatActivity implements CartActivityInter
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        binding.txtCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(CartActivity.this, AddCardActivity.class));
             }
         });
         show_cart();

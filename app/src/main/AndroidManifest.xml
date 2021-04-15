@@ -21,7 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BottleHoz"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.SearchResultActivity"></activity>
+        <activity android:name=".activities.AddCardActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+
+        </activity>
+        <activity android:name=".activities.SearchResultActivity" />
         <activity
             android:name=".Map.ManuallyMapActivity"
             android:configChanges="orientation|screenSize"
@@ -30,6 +36,8 @@
             android:name=".activities.Splash"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +65,9 @@
             android:name=".activities.ShowCatWiseProductActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".activities.RoughActivity" />
+        <activity android:name=".activities.RoughActivity">
+
+        </activity>
         <activity
             android:name=".activities.AllListingProductActivity"
             android:configChanges="orientation|screenSize"
@@ -103,7 +113,7 @@
         <activity
             android:name=".activities.MapActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activities.AddAddressActivity"
             android:configChanges="orientation|screenSize"

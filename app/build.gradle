@@ -94,4 +94,11 @@ dependencies {
 
     ///manually type map address
     implementation 'com.google.android.libraries.places:places:2.4.0'
+
+    ///add card
+    implementation 'com.github.denizsubasi:CCView:0.3'
+
+    ////gif
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.0'
 }
