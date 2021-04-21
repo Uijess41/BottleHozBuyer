@@ -3,7 +3,10 @@ package com.maestros.bottlehoz.model;
 public class RecommentModel {
 
     String productName;
-    String discription;
+    String shop_description;
+    String rating;
+    String image;
+    String path;
 
     public String getProductName() {
         return productName;
@@ -13,12 +16,12 @@ public class RecommentModel {
         this.productName = productName;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getShop_description() {
+        return shop_description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setShop_description(String shop_description) {
+        this.shop_description = shop_description;
     }
 
     public String getRating() {
@@ -29,22 +32,31 @@ public class RecommentModel {
         this.rating = rating;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public RecommentModel(String productName, String discription, String rating, int image) {
-        this.productName = productName;
-        this.discription = discription;
-        this.rating = rating;
-        this.image = image;
+    public String getPath() {
+        return path;
     }
 
-    String rating;
-    int image;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getTiming() {
+        return timing;
+    }
+
+    public void setTiming(String timing) {
+        this.timing = timing;
+    }
+
+    String timing;
+
 
 }

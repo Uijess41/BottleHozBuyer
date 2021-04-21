@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.RowFeatureRecommendLayoutBinding;
 import com.maestros.bottlehoz.databinding.RowRecommendLayoutBinding;
 import com.maestros.bottlehoz.model.FeatureRecommentModel;
@@ -34,19 +37,18 @@ public class RecommentAdapter extends RecyclerView.Adapter<RecommentAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         RecommentModel modelObject = recommentList.get(position);
-        holder.rowRecommendLayoutBinding.txtPName.setText(modelObject.getProductName());
-        holder.rowRecommendLayoutBinding.txtdish.setText(modelObject.getDiscription());
+         holder.rowRecommendLayoutBinding.txtPName.setText(modelObject.getProductName());
+        holder.rowRecommendLayoutBinding.txtdish.setText(modelObject.getShop_description());
         holder.rowRecommendLayoutBinding.txtrate.setText(modelObject.getRating());
-        holder.rowRecommendLayoutBinding.imgFavorite.setImageResource(modelObject.getImage());
 
-      /*  try {
-            Glide.with(mContext).load(R.drawable.imageb)
+     try {
+            Glide.with(mContext).load(modelObject.getPath()+modelObject.getImage())
                     .placeholder(R.drawable.imageb).override(250, 250)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.rowCatproductLayoutBinding.imgcategory);
+                    .into(holder.rowRecommendLayoutBinding.imgFavorite);
         } catch (Exception e) {
 
-        }*/
+        }
 
 
     }

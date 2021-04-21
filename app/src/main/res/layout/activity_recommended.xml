@@ -145,17 +145,19 @@
             </RelativeLayout>
 
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/scroll"
-    android:id="@+id/rvFeature"
-    android:scrollbars="none"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFeature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_below="@+id/scroll"
+                android:scrollbars="none" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rvRecomment"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/rvFeature"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"/>
