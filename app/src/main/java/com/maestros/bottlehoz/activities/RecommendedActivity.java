@@ -81,68 +81,6 @@ public class RecommendedActivity extends AppCompatActivity {
 
     }
 
-   /* private void getRecommentData() {
-
-        String USER_ID = SharedHelper.getKey(getApplicationContext(), AppConstats.USER_ID);
-        CustomDialog dialog = new CustomDialog();
-        dialog.showDialog(R.layout.progress_layout, this);
-
-        AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control", RECOMMEND_STORE)
-                .addBodyParameter("userID", "21")
-                .setTag("Show Recommended Product")
-                .setPriority(Priority.HIGH)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        dialog.hideDialog();
-                        recommentList = new ArrayList<>();
-                        Log.e("RecommendedActivity", "onResponse: " + response);
-                        try {
-                            if (response.getString("result").equals("true")) {
-                                String data = response.getString("data");
-                                JSONArray jsonArray = new JSONArray(data);
-
-                                Log.e("RecommendedActivity", "data: " + data);
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String opening_time = jsonObject.getString("opening_time");
-                                    if (!opening_time.isEmpty()) {
-                                        JSONObject object = new JSONObject(opening_time);
-
-                                         *//*   RecommentModel model = new RecommentModel();
-                                            model.setProductName(jsonObject.getString("shop_name"));
-                                            model.setRating(jsonObject.getString("avg_rating"));
-                                            model.setPath(jsonObject.getString("path"));
-                                            model.setProductName(jsonObject.getString("profile_image"));
-                                            model.setTiming(object.getString("open"));
-                                            model.setShop_description(jsonObject.getString("shop_description"));
-                                            recommentList.add(model);*//*
-
-
-                                    }
-
-
-                                }
-                                adapter = new RecommentAdapter(RecommendedActivity.this, recommentList);
-                                binding.rvRecomment.setAdapter(adapter);
-                            }
-                        } catch (JSONException e) {
-                            dialog.hideDialog();
-
-                            Log.e("RecommendedActivity", "e: " + e);
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        dialog.hideDialog();
-                        Log.e("RecommendedActivity", "anError: " + anError);
-                    }
-                });
-
-    }*/
 
 
 
