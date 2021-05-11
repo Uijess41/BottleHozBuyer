@@ -3,6 +3,7 @@ package com.maestros.bottlehoz.activities;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,15 +19,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.fragment.FeedFragment;
 import com.maestros.bottlehoz.fragment.HomeFragment;
+import com.maestros.bottlehoz.fragment.MyAccountScreen;
 import com.maestros.bottlehoz.fragment.ProfileFragment;
 
 public class BottomNavActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    public  static DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_nav);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        drawer=findViewById(R.id.drawer);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
@@ -57,7 +61,7 @@ public class BottomNavActivity extends AppCompatActivity implements BottomNaviga
                 break;
             case R.id.nav_profile:
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyAccountScreen()).commit();
                 break;
         }
 

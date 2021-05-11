@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
                             SharedHelper.putKey(context, AppConstats.USER_TYPE, json.getString("type"))
                             SharedHelper.putKey(context, AppConstats.USER_AGE, json.getString("age_validation"))
 
-                            startActivity(Intent(applicationContext, BottomNavActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                            startActivity(Intent(applicationContext, BottomNavActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
                         } else {
                         }

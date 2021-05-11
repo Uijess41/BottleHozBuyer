@@ -15,6 +15,7 @@ import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.databinding.ActivityHomeBinding;
 import com.maestros.bottlehoz.fragment.FeedFragment;
 import com.maestros.bottlehoz.fragment.HomeFragment;
+import com.maestros.bottlehoz.fragment.MyAccountScreen;
 import com.maestros.bottlehoz.fragment.NotificationFragment;
 import com.maestros.bottlehoz.fragment.ProfileFragment;
 import com.maestros.bottlehoz.fragment.RewardFragment;
@@ -67,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                     loadFragment(fragment);
                     return true;
                 case R.id.menu_profile:
-                    fragment = new ProfileFragment();
+                    fragment = new MyAccountScreen();
                     loadFragment(fragment);
                     return true;
             }

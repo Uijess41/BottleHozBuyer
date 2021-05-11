@@ -39,7 +39,6 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         adapter = new ChatAdapter(ChatActivity.this, chatList);
-
         binding.rvChat.setLayoutManager(new LinearLayoutManager(ChatActivity.this, RecyclerView.VERTICAL,false));
         binding.rvChat.setAdapter(adapter);
         getChatData();

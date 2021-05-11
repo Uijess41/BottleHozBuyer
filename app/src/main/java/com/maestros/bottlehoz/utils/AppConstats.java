@@ -3,6 +3,10 @@ package com.maestros.bottlehoz.utils;
 public class AppConstats {
 
 
+    public static final String NAME = "NAME";
+    public static final String EMAIL = "EMAIL";
+    public static final String MOBILE = "MOBILE";
+    public static final String PASSWORD = "PASSWORD";
     public static final String USER_ID = "USER_ID";
     public static final String CATEGORYID = "CATEGORYID";
     public static final String CATEGORYNAME = "CATEGORYNAME";

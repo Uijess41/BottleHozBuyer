@@ -116,6 +116,7 @@
     <string name="address">Address</string>
     <string name="reviews">Reviews</string>
     <string name="show_more">Show More</string>
+    <string name="not_rec_code">Don\'t recieved the code. ?  </string>
 
 
 </resources>

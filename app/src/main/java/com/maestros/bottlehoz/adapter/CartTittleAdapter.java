@@ -1,6 +1,7 @@
 package com.maestros.bottlehoz.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.maestros.bottlehoz.activities.CartData;
 import com.maestros.bottlehoz.activities.CheckInterface;
+import com.maestros.bottlehoz.activities.IgetProIds;
 import com.maestros.bottlehoz.databinding.RowCartOneLayoutBinding;
 
 import java.util.ArrayList;
@@ -25,9 +27,14 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
     List<CartData.Data> catTittleList;
     List<CartData.Data> cartProductModelList;
     List<Boolean> booleans;
+    public  static  int Count=0;
 
     LinearLayoutManager layoutManagerProduct;
     CheckInterface checkInterface;
+
+    ArrayList<String> Arr_proids=new ArrayList<>();
+    CartProductAdapter cartProductAdapter;
+
 
     public CartTittleAdapter(Context mContext, List<CartData.Data> catTittleList,ArrayList<Boolean>booleans , CheckInterface checkInterface) {
         this.mContext = mContext;
@@ -35,6 +42,9 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         this.checkInterface = checkInterface;
         this.booleans = booleans;
     }
+
+
+
 
     @NonNull
     @Override
@@ -56,8 +66,7 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         StringBuilder sb_grandTotal = new StringBuilder(); // or StringBuffer
         sb_grandTotal.append(j);
         holder.rowCartOneLayoutBinding.tvAmount.setText(sb_grandTotal);
-
-
+        
 
         /*  ArrayList<CartProductModel> cartProductModelList=new ArrayList<>();
 
@@ -80,6 +89,7 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
 
                 if (isChecked) {
                  checkInterface.checkData("a",true,position);
+                    Count=0;
                     layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
                     holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
                     holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
@@ -87,6 +97,7 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
                     holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
 
                 } else {
+                    Count++;
                checkInterface.checkData("a",false,position);
                     layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
                     holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
@@ -100,10 +111,15 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         layoutManagerProduct = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);
         holder.rowCartOneLayoutBinding.rvProdcut.setLayoutManager(layoutManagerProduct);
         holder.rowCartOneLayoutBinding.rvProdcut.setHasFixedSize(true);
-        CartProductAdapter cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts(), false, checkInterface);
+        cartProductAdapter = new CartProductAdapter(mContext, modelObject.getSellers_info().getProducts(), false, checkInterface);
         holder.rowCartOneLayoutBinding.rvProdcut.setAdapter(cartProductAdapter);
-
-
+        cartProductAdapter.SetonClickItem(new IgetProIds() {
+            @Override
+            public void Ssecondcheck(String s) {
+                Arr_proids.add(s);
+                Log.e("adSDASDASDASSA", Arr_proids+"");
+            }
+        });
     }
 
     @Override
@@ -120,6 +136,8 @@ public class CartTittleAdapter extends RecyclerView.Adapter<CartTittleAdapter.My
         }
 
     }
+
+
 
 
 }

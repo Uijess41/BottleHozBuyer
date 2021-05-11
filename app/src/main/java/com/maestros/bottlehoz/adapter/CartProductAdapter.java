@@ -26,6 +26,7 @@ import com.maestros.bottlehoz.R;
 import com.maestros.bottlehoz.activities.CartActivity;
 import com.maestros.bottlehoz.activities.CartData;
 import com.maestros.bottlehoz.activities.CheckInterface;
+import com.maestros.bottlehoz.activities.IgetProIds;
 import com.maestros.bottlehoz.databinding.RowCartProductLayoutBinding;
 import com.maestros.bottlehoz.retrofit.BaseUrl;
 import com.maestros.bottlehoz.utils.AppConstats;
@@ -34,6 +35,7 @@ import com.maestros.bottlehoz.utils.SharedHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.maestros.bottlehoz.retrofit.BaseUrl.DELETE_CART;
@@ -45,9 +47,14 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
     Context mContext;
     Boolean check;
     CheckInterface checkInterface;
+    IgetProIds getCheckInterface;
+
+
     // int stock_count = 0;
     int count = 0;
     List<CartData.Data.SellersInfo.Product> catProductList;
+
+
 
     public CartProductAdapter(Context mContext, List<CartData.Data.SellersInfo.Product> catProductList, Boolean check, CheckInterface checkInterface) {
         this.mContext = mContext;
@@ -55,6 +62,11 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         this.check = check;
         this.checkInterface = checkInterface;
     }
+    public void SetonClickItem(IgetProIds weightproduct){
+        this.getCheckInterface=weightproduct;
+    }
+
+
 
     @NonNull
     @Override
@@ -71,8 +83,27 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         holder.rowCartProductLayoutBinding.txtItemCount.setText(modelObject.getQuantity());
         if (check) {
             holder.rowCartProductLayoutBinding.checkCategory.setChecked(true);
+//                getCheckInterface.Ssecondcheck(modelObject.getProduct_info().getProductID());
+
+
         } else {
             holder.rowCartProductLayoutBinding.checkCategory.setChecked(false);
+           // Arr_proids=new ArrayList<>();
+            holder.rowCartProductLayoutBinding.checkCategory.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    checkInterface.checkData("dsds", false, 0);
+                    getCheckInterface.Ssecondcheck(modelObject.getProduct_info().getProductID());
+
+
+                } else {
+                    checkInterface.checkData("dsds", false, 0);
+
+
+                }
+
+
+            });
+
         }
 
         Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
@@ -92,29 +123,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
         }
 
 
-        holder.rowCartProductLayoutBinding.checkCategory.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                checkInterface.checkData("dsds", false, 0);
-                Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
-                checkInterface.checkData("dsds", false, 0);
-            }
-            if (holder.rowCartProductLayoutBinding.checkCategory.isChecked()) {
-               /* if (mContext instanceof CartActivity) {
-                    ((CartActivity) mContext).draw(modelObject.getCartID(), position);
-
-                }*/
-
-
-            } else {
-                /*if (mContext instanceof CartActivity) {
-                    ((CartActivity) mContext).draw("0", position);
-                }*/
-
-            }
-
-        });
 
 
         holder.rowCartProductLayoutBinding.ivDelete.setOnClickListener(new View.OnClickListener() {
@@ -322,4 +330,6 @@ public class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.
 
 
     }
+
+
 }

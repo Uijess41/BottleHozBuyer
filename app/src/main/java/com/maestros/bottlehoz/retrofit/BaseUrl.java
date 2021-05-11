@@ -28,5 +28,6 @@ public class BaseUrl {
     public static final String SHOW_ADDRESS="show_address";
     public static final String DELETE_ADDRESS="delete_address";
     public static final String RECOMMEND_STORE="all_store";
+    public static final String GENERATE_OTP="genrate_otp";
 
 }

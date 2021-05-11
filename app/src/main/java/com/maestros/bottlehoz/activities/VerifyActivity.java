@@ -31,9 +31,8 @@ public class VerifyActivity extends AppCompatActivity {
     private ActivityVerifyBinding binding;
     private Context context;
     private View view;
-    private String email="",pwd="",mobile="",userType="",age="",strPin;
+    private String email="",pwd="",mobile="",userType="",age="",strPin,struserId="",otp="";
     Connectivity connectivity;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +43,15 @@ public class VerifyActivity extends AppCompatActivity {
         context=this;
         connectivity=new Connectivity(context);
         if (getIntent()!=null){
-            email=getIntent().getStringExtra("email");
+           /* email=getIntent().getStringExtra("email");
             pwd=getIntent().getStringExtra("pwd");
             mobile=getIntent().getStringExtra("mobile");
-            userType=getIntent().getStringExtra("userType");
-            age=getIntent().getStringExtra("age");
 
-            Log.e("VerifyActivity", "onCreate: " +email);
-            Log.e("VerifyActivity", "onCreate: " +pwd);
-            Log.e("VerifyActivity", "onCreate: " +mobile);
-            Log.e("VerifyActivity", "onCreate: " +userType);
-            Log.e("VerifyActivity", "onCreate: " +age);
+            age=getIntent().getStringExtra("age");*/
+
+            userType=getIntent().getStringExtra("userType");
+            otp=getIntent().getStringExtra("otp");
+            struserId=getIntent().getStringExtra("struserId");
         }
 
         binding.tvMail.setText("A verification code sent to "+email);
@@ -62,77 +59,50 @@ public class VerifyActivity extends AppCompatActivity {
         binding.btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (userType.equals("3")){
-                    strPin=binding.firstPinView.getText().toString();
-                    if (connectivity.isOnline()){
-                        sendData();
-                    }else {
 
+                if (connectivity.isOnline()) {
+                    strPin = binding.firstPinView.getText().toString();
+                    if (userType.equals("1")){
+                        if (otp.equals(strPin)){
+                            startActivity(new Intent(context, BasicInfoActivity.class));
+                            finish();
+                        }else {
+                            Toast.makeText(context, "Please enter correct otp !", Toast.LENGTH_SHORT).show();
+                        }}
+                    else {
+                        startActivity(new Intent(context, AccountHelpActivity.class).putExtra("come_from", "1"));
+                        finish();
                     }
 
-                }else {
-                    startActivity(new Intent(context, AccountHelpActivity.class).putExtra("come_from", "1"));
-                    finish();
+
+                 /*
+                    if (userType.equals("3")||userType.equals("2")) {
+
+                        if (userType.equals("3")){
+                            startActivity(new Intent(context, BasicInfoActivity.class)
+                                    .putExtra("email", email)
+                                    .putExtra("pwd", pwd)
+                                    .putExtra("mobile", mobile)
+                                    .putExtra("userType", userType)
+                                    .putExtra("age", age));
+                        }else if (userType.equals("1")){
+
+
+                            startActivity(new Intent(context, CreateSellerActivity.class));
+//                            startActivity(new Intent(context, SellerDashboard.class).putExtra("My_product","0"));
+                        }
+                        finish();
+
+                    }  else {
+                        startActivity(new Intent(context, AccountHelpActivity.class).putExtra("come_from", "1"));
+                    }
+                    finish();*/
+
+                } else{
+                    Toast.makeText(context, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void sendData() {
-      CustomDialog dialog=new CustomDialog();
-        dialog.showDialog(R.layout.progress_layout,this);
-        AndroidNetworking.post(BaseUrl.BASEURL)
-                .addBodyParameter("control",OTPVERIFY )
-                .addBodyParameter("email", email)
-                .addBodyParameter("otp", strPin)
-                .setTag("OTPVERIFY")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        dialog.hideDialog();
-                        Log.e("response",response+"");
-
-                        try {
-
-                            if (response.getBoolean("result")==true){
-                                String data=response.getString("data");
-                                JSONObject jsonObject=new JSONObject(data);
-                                startActivity(new Intent(context, BasicInfoActivity.class));
-
-                                        SharedHelper.putKey(context, AppConstats.USER_ID, jsonObject.getString("userID"));
-                                        SharedHelper.putKey(context, AppConstats.USER_NAME, jsonObject.getString("name"));
-                                        SharedHelper.putKey(context, AppConstats.USER_EMAIL, jsonObject.getString("email"));
-                                        SharedHelper.putKey(context, AppConstats.USER_PASSWORD, jsonObject.getString("password"));
-                                        SharedHelper.putKey(context, AppConstats.USER_MOBILE, jsonObject.getString("mobile"));
-                                        SharedHelper.putKey(context, AppConstats.USER_TYPE, jsonObject.getString("type"));
-                                        SharedHelper.putKey(context, AppConstats.USER_AGE, jsonObject.getString("age_validation"));
-                                         finish();
-
-                                     /*           .putExtra("email", email)
-                                        .putExtra("pwd", pwd)
-                                        .putExtra("mobile", mobile)
-                                        .putExtra("userType", userType)
-                                        .putExtra("age", age));*/
-
-
-                            }else {
-                                Toast.makeText(context, ""+response.getString("message"), Toast.LENGTH_SHORT).show();
-                                dialog.hideDialog();
-                            }
-
-
-                        } catch (JSONException e) {
-                            Log.e("VerifyActivity", "e: " +e.getMessage());
-                            dialog.hideDialog();
-                        }
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        Log.e("VerifyActivity", "error: " +error.getMessage());
-                        dialog.hideDialog();
-                    }
-                });
-    }
 }

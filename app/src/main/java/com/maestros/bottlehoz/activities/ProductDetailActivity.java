@@ -202,6 +202,13 @@ public class ProductDetailActivity extends AppCompatActivity {
                                         binding.btnAdd.setVisibility(View.GONE);
                                         binding.btnAlready.setVisibility(View.VISIBLE);
 
+                                        binding.ivCart.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                startActivity(new Intent(ProductDetailActivity.this,CartActivity.class));
+                                            }
+                                        });
+
                                         binding.ivplus.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(final View v) {
