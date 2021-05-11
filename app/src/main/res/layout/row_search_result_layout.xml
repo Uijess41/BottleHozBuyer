@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardNew1"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="20dp"
+        >
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/rl"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgPopular"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/drink"
+                    />
+                <ImageView
+                    android:id="@+id/imgFav"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/fv"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/rl"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Smirnoff"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingStar"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/txtName"
+                    android:saveEnabled="true"
+                    android:theme="@style/RatingBar">
+
+                </androidx.appcompat.widget.AppCompatRatingBar>
+
+
+                <ImageView
+                    android:id="@+id/imgRight1"
+                    android:layout_width="18dp"
+                    android:layout_below="@+id/txtName"
+                    android:layout_height="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/add" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/ratingStar"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/imgfilter"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_toLeftOf="@+id/txCartcount"
+                        android:src="@drawable/cart" />
+                    <TextView
+                        android:id="@+id/txCartcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1125"
+                        android:textSize="12sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:textColor="@color/greyNew" />
+
+
+
+                    <ImageView
+                        android:id="@+id/imgcomment"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/cart" />
+                    <TextView
+                        android:id="@+id/txCommentcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="725"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/imgcomment"
+                        android:textColor="@color/greyNew" />
+
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

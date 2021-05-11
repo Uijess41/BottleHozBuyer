@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddCardActivity">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewHeader"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:cardCornerRadius="-5dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:src="@drawable/back_arrow"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/imgBack"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/sfprodisplay_semibold"
+                        android:text="Cards"
+                        android:textColor="@color/black" />
+
+
+
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckOut"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/cardViewHeader"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Cash on delivery"
+                android:visibility="gone" />
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="vertical">
+
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="MissingConstraints">
+                            <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/constraintLayout3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAddCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Add Card"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/purple_700"
+                            android:textSize="10dp"
+                            android:layout_alignParentBottom="true"
+                            app:backgroundTint="@color/md_yellow_500"
+                            app:cornerRadius="20dp"
+                            app:strokeWidth="0.5dp"
+                            tools:ignore="MissingConstraints" />
+                        </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+
+</RelativeLayout>

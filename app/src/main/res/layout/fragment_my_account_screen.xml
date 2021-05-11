@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.MyAccountScreen">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/tvToolbar"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="14dp"
+                android:id="@+id/iv_bak"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_arrow"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_bak"
+                android:padding="5dp"
+                android:text="My Account"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@color/md_green_A400"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="14dp"
+                android:src="@drawable/noti_icon"
+                android:id="@+id/iv_noti"
+                android:layout_toLeftOf="@+id/card"
+                android:layout_centerVertical="true"
+                android:tint="@color/md_green_A400"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                card_view:cardCornerRadius="10dp"
+                android:layout_below="@+id/ivBg"
+                android:layout_centerHorizontal="true"
+                card_view:cardElevation="0dp"
+                android:layout_toLeftOf="@+id/iv_option"
+                android:layout_margin="5dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/demo"
+                    android:padding="14dp"
+                    android:background="@color/white"
+                    android:scaleType="fitXY" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="14dp"
+                android:src="@drawable/option"
+                android:id="@+id/iv_option"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="@color/md_green_A400"/>
+
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:id="@+id/salerecord"
+        android:layout_below="@+id/tvToolbar"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:background="@drawable/grey_bordershape">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Total Orders"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="120 Orders"
+            android:textColor="@color/greylight"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/salerecord">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardoptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="10dp"
+            android:layout_below="@+id/ivBg"
+            android:layout_centerHorizontal="true"
+            card_view:cardElevation="0dp"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/md_green_400">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:id="@+id/rvMenuGrid"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/grey_bordershape"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:id="@+id/setting"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_outline_settings_24"/>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/setting"
+                android:padding="5dp"
+                android:text="General Settings"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/md_green_A400"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_open"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:id="@+id/rl_pro"
+            android:background="@drawable/grey_bordershape"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:id="@+id/iv_pro"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/profile_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_pro"
+                android:padding="5dp"
+                android:text="Profile Settings"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/md_green_A400"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_open"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/grey_bordershape"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:id="@+id/iv_delive"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/profile_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_delive"
+                android:padding="5dp"
+                android:text="Delievery Address"
+                android:id="@+id/delive"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/md_green_A400"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_open"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/grey_bordershape"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:tint="@color/md_green_A400"
+                android:id="@+id/iv_payment"
+                android:layout_centerVertical="true"
+                android:src="@drawable/profile_bg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_payment"
+                android:padding="5dp"
+                android:id="@+id/payment"
+                android:text="Payment Details"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/md_green_A400"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:tint="@color/md_green_A400"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_open"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greyN"
+    tools:context=".activities.SearchResultActivity">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:cardElevation="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/txtStore"
+               >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivSearch"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/sear" />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:layout_toRightOf="@+id/ivSearch"
+                        android:hint="@string/search"
+                        android:maxLength="50"
+                        android:paddingLeft="5dp"
+                        android:id="@+id/etSearch"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/ivFilter"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/fil" />
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:visibility="gone"
+                android:id="@+id/rlLottie"
+                android:layout_height="match_parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lotiAnimation"
+                    android:visibility="visible"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="noseach.json"
+                    app:lottie_loop="true" />
+
+
+                <TextView
+                    android:id="@+id/txtNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfprodisplay_semibold"
+                    android:layout_gravity="center"
+                    android:text="Not Available "
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/lotiAnimation"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="italic" />
+
+
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:id="@+id/rvSearch"/>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
